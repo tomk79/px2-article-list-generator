@@ -1,0 +1,11 @@
+* path,* content,* id,* title,* title_breadcrumb,* title_h1,* title_label,* title_full,* logical_path,* article_flg,* list_flg,* layout,* release_date,* update_date,* article_summary,* orderby,* keywords,* description,* category_top_flg,* **delete_flg
+/index.html,,,HOME,,,,,,,1,top,,,,,,,,
+/listsample1/{*},,,LIST SAMPLE 1,,,,,,,1,,,,,,,,1,
+/listsample1/articles/1/,,,Article 1,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 1,,,,,
+/listsample1/articles/2/,,,Article 2,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 2,,,,,
+/listsample1/articles/3/,,,Article 3,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 3,,,,,
+/listsample1/articles/4/,,,Article 4,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 4,,,,,
+/listsample1/articles/5/,,,Article 5,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 5,,,,,
+/listsample1/articles/6/,,,Article 6,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 6,,,,,
+/listsample1/articles/7/,,,Article 7,,,,,/listsample1/{*},1,,,2015-01-23,2015-01-23,Summary 7,,,,,
+/listsample2/{*},,,LIST SAMPLE 2,,,,,,,1,,,,,,,,1,
