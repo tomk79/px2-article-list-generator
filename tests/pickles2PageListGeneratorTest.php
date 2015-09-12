@@ -1,9 +1,6 @@
 <?php
 /**
- * test for tomk79\PxFW-2.x
- * 
- * $ cd (project dir)
- * $ ./vendor/phpunit/phpunit/phpunit picklesTest "./px-files/_sys/tests/picklesTest.php"
+ * test for tomk79\px2-page-list-generator
  */
 
 class pickles2PageListGeneratorTest extends PHPUnit_Framework_TestCase{

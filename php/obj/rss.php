@@ -65,7 +65,7 @@ class pxplugin_listMgr_obj_rss{
 					$SRC_RSS = $this->generate_rss_atom( $list );//Atom 1.0
 					break;
 			}
-			if( !$this->px->fs()->file_overwrite( $realpath_rss , $SRC_RSS ) ){
+			if( !$this->px->fs()->save_file( $realpath_rss , $SRC_RSS ) ){
 				$this->internal_error( 'FAILD to save feed RSS '.$rss_version.' ['.$path_rss.']' , __FILE__ , __LINE__ );
 			}
 			unset( $path_rss , $SRC_RSS );
