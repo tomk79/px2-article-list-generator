@@ -237,12 +237,14 @@ class pxplugin_listMgr_obj_rss{
 		array_push( $this->error_list , array( 'message'=>$error_msg , 'file'=>$FILE , 'line'=>$LINE ) );
 		return	true;
 	}
+
 	/**
 	 * オブジェクト内部エラーを取得
 	 */
 	public function get_error_list(){
 		return	$this->error_list;
 	}
+
 	/**
 	 * エラー数を調べる
 	 */

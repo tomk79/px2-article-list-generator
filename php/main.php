@@ -24,4 +24,11 @@ class main{
 		return $obj;
 	}
 
+	/**
+	 * areas
+	 */
+	public function create( $path_list, $options ){
+		return $this->factory_listMgr($path_list, $options);
+	}
+
 }

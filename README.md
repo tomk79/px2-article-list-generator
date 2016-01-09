@@ -120,7 +120,7 @@ $ composer update
 
 ```php
 <?php
-$listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->factory_listMgr(
+$listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 	function($page_info){
 		if(@$page_info['article_flg']){
 			return true;
