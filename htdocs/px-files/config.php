@@ -108,7 +108,7 @@ return call_user_func( function(){
 		'picklesFramework2\processors\autoindex\autoindex::exec' ,
 
 		// テーマ
-		'theme'=>'picklesFramework2\theme\theme::exec' , 
+		'theme'=>'picklesFramework2\theme\theme::exec' ,
 
 		// Apache互換のSSIの記述を解決する
 		'picklesFramework2\processors\ssi\ssi::exec' ,
@@ -156,8 +156,8 @@ return call_user_func( function(){
 	// config for Pickles2 Desktop Tool.
 	$conf->plugins->px2dt = new stdClass;
 	$conf->plugins->px2dt->paths_module_template = [
-		"PlainHTMLElements" => "./vendor/tomk79/px2-mod-plain-html-elements/modules/",
-		"YASS" => "../modules/"
+		"PlainHTMLElements" => "../vendor/pickles2/broccoli-module-plain-html-elements/modules/",
+		"FESS" => "../vendor/pickles2/broccoli-module-fess/modules/"
 	];
 
 	return $conf;

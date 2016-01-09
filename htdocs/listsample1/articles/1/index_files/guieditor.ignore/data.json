@@ -1,0 +1,22 @@
+{
+ "bowl": {
+  "main": {
+   "modId": "_sys/root",
+   "fields": {
+    "main": [
+     {
+      "modId": "PlainHTMLElements:PlainHTML/MultiText",
+      "fields": {
+       "main": {
+        "src": "サンプル記事を書いています。\n\n<!-- autoindex -->\n\n## これは、ブログコンテンツのサンプル\n\nサンプル記事です。",
+        "editor": "markdown"
+       }
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
+   }
+  }
+ }
+}

@@ -18,11 +18,11 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "tomk79/px-fw-2.x": "dev-develop",
-        "tomk79/px2-px2dthelper": "dev-develop",
-        "tomk79/px2-fess": "dev-develop",
-        "tomk79/px2-mod-plain-html-elements": "dev-develop",
-        "tomk79/px2-sitemapexcel": "2.*",
+        "pickles2/px-fw-2.x": "dev-develop",
+        "pickles2/px2-px2dthelper": "dev-develop",
+        "pickles2/broccoli-module-fess": "dev-develop",
+        "pickles2/broccoli-module-plain-html-elements": "dev-develop",
+        "pickles2/px2-sitemapexcel": "2.*",
         "phpunit/phpunit": "4.1.*"
     },
     "autoload": {
