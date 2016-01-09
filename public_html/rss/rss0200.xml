@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+	<channel>
+		<title>test list 1</title>
+		<link>http://pickles2.pxt.jp/listsample1/</link>
+		<language>ja</language>
+		<description>TEST LIST</description>
+		<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/1/?rss=1</link>
+			<description><![CDATA[Summary 1]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/1/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/2/?rss=1</link>
+			<description><![CDATA[Summary 2]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/2/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/3/?rss=1</link>
+			<description><![CDATA[Summary 3]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/3/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/4/?rss=1</link>
+			<description><![CDATA[Summary 4]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/4/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/5/?rss=1</link>
+			<description><![CDATA[Summary 5]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/5/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/6/?rss=1</link>
+			<description><![CDATA[Summary 6]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/6/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/7/?rss=1</link>
+			<description><![CDATA[Summary 7]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/7/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/8/?rss=1</link>
+			<description><![CDATA[Summary 8]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/8/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/9/?rss=1</link>
+			<description><![CDATA[Summary 9]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/9/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/10/?rss=1</link>
+			<description><![CDATA[Summary 10]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/10/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/11/?rss=1</link>
+			<description><![CDATA[Summary 11]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/11/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/12/?rss=1</link>
+			<description><![CDATA[Summary 12]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/12/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/13/?rss=1</link>
+			<description><![CDATA[Summary 13]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/13/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/14/?rss=1</link>
+			<description><![CDATA[Summary 14]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/14/?rss=1</guid>
+		</item>
+		<item>
+			<title></title>
+			<link>http://pickles2.pxt.jp/listsample1/articles/15/?rss=1</link>
+			<description><![CDATA[Summary 15]]></description>
+			<pubDate>2015-01-23T00:00:00+09:00</pubDate>
+			<guid isPermaLink="true">http://pickles2.pxt.jp/listsample1/articles/15/?rss=1</guid>
+		</item>
+	</channel>
+</rss>

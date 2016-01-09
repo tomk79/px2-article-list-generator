@@ -8,6 +8,7 @@ class pxplugin_listMgr_obj_rss{
 	private $px;
 	private $listMgr;
 	private $error_list = array();
+	private $pubDate = 0;
 
 	/**
 	 * コンストラクタ
@@ -29,8 +30,12 @@ class pxplugin_listMgr_obj_rss{
 		}
 		$list = array();
 		$tmp_list = $this->listMgr->get_list_all();
+		$this->pubDate = 0;
 		for( $i = 0; $i < 50 && $tmp_list[$i]; $i ++ ){
 			array_push( $list, $tmp_list[$i] );
+			if( strtotime($tmp_list[$i]['release_date']) > $this->pubDate ){
+				$this->pubDate = strtotime($tmp_list[$i]['release_date']);
+			}
 		}
 		unset( $tmp_list );
 
@@ -132,7 +137,7 @@ class pxplugin_listMgr_obj_rss{
 		$RTN .= '		<link>'.htmlspecialchars( $this->get_blog_info('blog_index_url') ).'</link>'."\n";
 		$RTN .= '		<language>'.htmlspecialchars( $this->get_blog_info('language') ).'</language>'."\n";
 		$RTN .= '		<description>'.htmlspecialchars( $this->get_blog_info('blog_description') ).'</description>'."\n";
-		$RTN .= '		<pubDate>'.$this->mk_releasedate_string( time() ).'</pubDate>'."\n";
+		$RTN .= '		<pubDate>'.$this->mk_releasedate_string( $this->pubDate ).'</pubDate>'."\n";
 #		$RTN .= '		<guid>'.htmlspecialchars( $this->get_blog_info('blog_index_url') ).'</guid>'."\n";
 		foreach( $article_array as $Line ){
 			$article_url = $this->mk_article_url( $Line['path'] );
@@ -158,7 +163,7 @@ class pxplugin_listMgr_obj_rss{
 		$RTN .= '<feed xmlns="http://www.w3.org/2005/Atom">'."\n";
 		$RTN .= '	<title>'.htmlspecialchars( $this->get_blog_info('blog_title') ).'</title>'."\n";
 		$RTN .= '	<link rel="alternate" href="'.htmlspecialchars( $this->get_blog_info('blog_index_url') ).'" type="text/html" />'."\n";
-		$RTN .= '	<updated>'.$this->mk_releasedate_string( time() ).'</updated>'."\n";
+		$RTN .= '	<updated>'.$this->mk_releasedate_string( $this->pubDate ).'</updated>'."\n";
 		$RTN .= '	<author>'."\n";
 		$RTN .= '		<name>'.htmlspecialchars( $this->get_blog_info('blog_author_name') ).'</name>'."\n";
 		$RTN .= '	</author>'."\n";
@@ -192,6 +197,9 @@ class pxplugin_listMgr_obj_rss{
 	 * リリース日を表す文字列を生成する
 	 */
 	private function mk_releasedate_string( $releaseDate ){
+		if( !is_int($releaseDate) ){
+			$releaseDate = strtotime($releaseDate);
+		}
 		$Ymd = date( 'Y-m-d' , $releaseDate );
 		$His = date( 'H:i:s' , $releaseDate );
 		$dit = date( 'O' , $releaseDate );

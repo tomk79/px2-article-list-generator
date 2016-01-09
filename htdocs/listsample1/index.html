@@ -9,11 +9,11 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		'url_home'=>'http://pickles2.pxt.jp/',
 		'url_index'=>'http://pickles2.pxt.jp/listsample1/',
 		'author'=>'Tomoya Koyanagi',
-		// 'rss'=>array(
-		// 	'atom-1.0'=>$px->get_path_controot().'/rss/plog_diary_atom0100.xml',
-		// 	'rss-1.0'=>$px->get_path_controot().'/rss/plog_diary_rss0100.rdf',
-		// 	'rss-2.0'=>$px->get_path_controot().'/rss/plog_diary_rss0200.xml',
-		// ),
+		'rss'=>array(
+			'atom-1.0'=>$px->get_path_docroot().'rss/atom0100.xml',
+			'rss-1.0'=>$px->get_path_docroot().'rss/rss0100.rdf',
+			'rss-2.0'=>$px->get_path_docroot().'rss/rss0200.xml',
+		),
 	)
 );
 
