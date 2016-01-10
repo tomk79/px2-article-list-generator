@@ -114,7 +114,7 @@ class pxplugin_listMgr_obj_rss{
 		foreach( $article_array as $Line ){
 			$article_url = $this->mk_article_url( $Line['path'] );
 			$RTN .= '		<item rdf:about="'.htmlspecialchars( $article_url ).'">'."\n";
-			$RTN .= '			<title>'.htmlspecialchars( $Line['article_title'] ).'</title>'."\n";
+			$RTN .= '			<title>'.htmlspecialchars( $Line['title'] ).'</title>'."\n";
 			$RTN .= '			<link>'.htmlspecialchars( $article_url ).'</link>'."\n";
 			$RTN .= '			<description><![CDATA['.htmlspecialchars( $Line['article_summary'] ).']]></description>'."\n";//descriptionはHTMLとして解釈されるのか？
 			$RTN .= '			<dc:date>'.$this->mk_releasedate_string( $Line['release_date'] ).'</dc:date>'."\n";
@@ -142,7 +142,7 @@ class pxplugin_listMgr_obj_rss{
 		foreach( $article_array as $Line ){
 			$article_url = $this->mk_article_url( $Line['path'] );
 			$RTN .= '		<item>'."\n";
-			$RTN .= '			<title>'.htmlspecialchars( $Line['article_title'] ).'</title>'."\n";
+			$RTN .= '			<title>'.htmlspecialchars( $Line['title'] ).'</title>'."\n";
 			$RTN .= '			<link>'.htmlspecialchars( $article_url ).'</link>'."\n";
 			$RTN .= '			<description><![CDATA['.htmlspecialchars( $Line['article_summary'] ).']]></description>'."\n";//descriptionはHTMLとして解釈されるのか？
 			$RTN .= '			<pubDate>'.$this->mk_releasedate_string( $Line['release_date'] ).'</pubDate>'."\n";
@@ -171,7 +171,7 @@ class pxplugin_listMgr_obj_rss{
 		foreach( $article_array as $Line ){
 			$article_url = $this->mk_article_url( $Line['path'] );
 			$RTN .= '	<entry>'."\n";
-			$RTN .= '		<title>'.htmlspecialchars( $Line['article_title'] ).'</title>'."\n";
+			$RTN .= '		<title>'.htmlspecialchars( $Line['title'] ).'</title>'."\n";
 			$RTN .= '		<link rel="alternate" href="'.htmlspecialchars( $article_url ).'" type="text/html" />'."\n";
 			$RTN .= '		<id>'.htmlspecialchars( md5( $article_url ) ).'</id>'."\n";
 			$RTN .= '		<updated>'.$this->mk_releasedate_string( $Line['release_date'] ).'</updated>'."\n";
