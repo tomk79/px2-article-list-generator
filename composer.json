@@ -1,7 +1,7 @@
 {
     "name": "tomk79/px2-page-list-generator",
     "description": "Pickles 2 に、ページ一覧画面を生成する機能を追加します。",
-    "keywords": ["pickles"],
+    "keywords": ["pickles2"],
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,7 @@
         "pickles2/px2-px2dthelper": "dev-develop",
         "pickles2/broccoli-module-fess": "dev-develop",
         "pickles2/broccoli-module-plain-html-elements": "dev-develop",
-        "pickles2/px2-sitemapexcel": "2.*",
+        "pickles2/px2-sitemapexcel": "dev-develop",
         "phpunit/phpunit": "4.1.*"
     },
     "autoload": {

@@ -1,27 +1,21 @@
 tomk79/px2-page-list-generator
 ========
 
-__tomk79/px2-page-list-generator__ は、[Pickles 2](http://pickles2.pxt.jp/) に、ページ一覧画面を生成する機能を追加します。
+__tomk79/px2-page-list-generator__ は、[Pickles 2](https://pickles2.pxt.jp/) に、ページ一覧画面を生成する機能を追加します。
 
 
 ## Usage - 使い方
 
 ### 1. Pickles2 をセットアップ
 
-[Pickles2 のセットアップ手順](http://pickles2.pxt.jp/overview/setup/) を参照してください。
+[Pickles2 のセットアップ手順](https://pickles2.pxt.jp/overview/setup/) を参照してください。
 
 ### 2. composer.json に追記
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/tomk79/px2-page-list-generator.git"
-        }
-    ],
     "require": {
-        "tomk79/px2-page-list-generator": "dev-master"
+        "tomk79/px2-page-list-generator": "^2.0.0"
     }
 }
 ```
@@ -132,8 +126,8 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
 		'lang'=>'ja',
-		'url_home'=>'http://pickles2.pxt.jp/',
-		'url_index'=>'http://pickles2.pxt.jp/listsample1/',
+		'url_home'=>'https://pickles2.pxt.jp/',
+		'url_index'=>'https://pickles2.pxt.jp/listsample1/',
 		'author'=>'Tomoya Koyanagi',
 		'rss'=>array(
 			'atom-1.0'=>$px->get_path_docroot().'rss/atom0100.xml',
@@ -169,6 +163,13 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 <?php print $pager; ?>
 
 ```
+
+## 更新履歴 - Change log
+
+### tomk79/px2-page-list-generator v2.0.0 (2019年1月15日)
+
+- Initial Release
+
 
 ## for Developer
 
