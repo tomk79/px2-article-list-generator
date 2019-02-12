@@ -129,25 +129,37 @@ class pxplugin_listMgr_obj_listMgr{
 		if( $pager_info['total_page_count'] > 1 ){
 			$pager .= '<div class="unit pager">'."\n";
 			$pager .= '	<ul>'."\n";
-			$pager .= '		<li class="pager-first">'.(!is_null($pager_info['first'])?'<a href="'.htmlspecialchars( $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$pager_info['first'].'/') ) ) ).'">&lt;&lt;first</a>':'<span>&lt;&lt;first</span>').'</li>'."\n";
-			$pager .= '		<li class="pager-prev">'.(!is_null($pager_info['prev'])?'<a href="'.htmlspecialchars( $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$pager_info['prev'].'/') ) ) ).'">&lt;prev</a>':'<span>&lt;prev</span>').'</li>'."\n";
+			$pager .= '		<li class="pager-first">'.(!is_null($pager_info['first'])?'<a href="'.htmlspecialchars( $this->href_pager( $pager_info['first'] ) ).'">&lt;&lt;first</a>':'<span>&lt;&lt;first</span>').'</li>'."\n";
+			$pager .= '		<li class="pager-prev">'.(!is_null($pager_info['prev'])?'<a href="'.htmlspecialchars( $this->href_pager( $pager_info['prev'] ) ).'">&lt;prev</a>':'<span>&lt;prev</span>').'</li>'."\n";
 			for( $i = $pager_info['index_start']; $i <= $pager_info['index_end']; $i ++ ){
 				if( $i == $pager_info['current'] ){
 					$pager .= '		<li><span class="current">'.htmlspecialchars($i).'</span></li>'."\n";
 				}else{
-					$href = $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$i.'/') ) );
+					$href = $this->href_pager( $i );
 					$pager .= '		<li><a href="'.htmlspecialchars( $href ).'">'.htmlspecialchars($i).'</a></li>'."\n";
 					$this->px->add_relatedlink( $href );
 				}
 			}
-			$pager .= '		<li class="pager-next">'.(!is_null($pager_info['next'])?'<a href="'.htmlspecialchars( $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$pager_info['next'].'/') ) ) ).'">next&gt;</a>':'<span>next&gt;</span>').'</li>'."\n";
-			$pager .= '		<li class="pager-last">'.(!is_null($pager_info['last'])?'<a href="'.htmlspecialchars( $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$pager_info['last'].'/') ) ) ).'">last&gt;&gt;</a>':'<span>last&gt;&gt;</span>').'</li>'."\n";
+			$pager .= '		<li class="pager-next">'.(!is_null($pager_info['next'])?'<a href="'.htmlspecialchars( $this->href_pager( $pager_info['next'] ) ).'">next&gt;</a>':'<span>next&gt;</span>').'</li>'."\n";
+			$pager .= '		<li class="pager-last">'.(!is_null($pager_info['last'])?'<a href="'.htmlspecialchars( $this->href_pager( $pager_info['last'] ) ).'">last&gt;&gt;</a>':'<span>last&gt;&gt;</span>').'</li>'."\n";
 			$pager .= '	</ul>'."\n";
 			$pager .= '</div><!-- /.pager -->'."\n";
 
 		}
 
 		return $pager;
+	}
+
+	/**
+	 * ページャーごとのURLを生成
+	 */
+	private function href_pager( $page_num ){
+		$bind_param = $page_num.'/';
+		if( $page_num == 1 ){
+			$bind_param = '';
+		}
+		$rtn = $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$bind_param) ) );
+		return $rtn;
 	}
 
 	/**
