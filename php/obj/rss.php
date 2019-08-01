@@ -188,7 +188,7 @@ class pxplugin_listMgr_obj_rss{
 	 * 記事のパスからURLを生成
 	 */
 	private function mk_article_url( $path ){
-		$article_url = 'http://'.$this->get_blog_info('blog_domain').$this->px->href( $path ).'?rss=1';
+		$article_url = $this->get_blog_info('blog_scheme').'://'.$this->get_blog_info('blog_domain').$this->px->href( $path ).'?rss=1';
 		return $article_url;
 	}
 
@@ -219,19 +219,37 @@ class pxplugin_listMgr_obj_rss{
 				$rtn = 'https';
 				if( array_key_exists('scheme', $options) && strlen($options['scheme']) ){
 					$rtn = $options['scheme'];
-				}elseif( strlen($this->px->conf()->scheme) ){
+				}elseif( property_exists($this->px->conf(), 'scheme') && strlen($this->px->conf()->scheme) ){
 					$rtn = $this->px->conf()->scheme;
 				}
 				return	$rtn;
 				break;
 			case 'blog_domain':
-				return	$options['domain'];
+				$rtn = null;
+				if( array_key_exists('domain', $options) && strlen($options['domain']) ){
+					$rtn = $options['domain'];
+				}elseif( property_exists($this->px->conf(), 'domain') && strlen($this->px->conf()->domain) ){
+					$rtn = $this->px->conf()->domain;
+				}
+				return	$rtn;
 				break;
 			case 'blog_title':
-				return	$options['title'];
+				$rtn = null;
+				if( array_key_exists('title', $options) && strlen($options['title']) ){
+					$rtn = $options['title'];
+				}elseif( property_exists($this->px->conf(), 'name') && strlen($this->px->conf()->name) ){
+					$rtn = $this->px->conf()->name;
+				}
+				return	$rtn;
 				break;
 			case 'blog_url':
-				return	$options['url_home'];
+				$rtn = null;
+				if( array_key_exists('url_home', $options) && strlen($options['url_home']) ){
+					$rtn = $options['url_home'];
+				}else{
+					$rtn = $this->px->canonical('');
+				}
+				return	$rtn;
 				break;
 			case 'blog_index_url':
 				return	$options['url_index']; break;
