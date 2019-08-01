@@ -167,7 +167,7 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 
 ## 更新履歴 - Change log
 
-### tomk79/px2-page-list-generator v2.0.1 (リリース日未定)
+### tomk79/px2-page-list-generator v2.0.1 (2019年8月2日)
 
 - ページャーの最初のページURLに番号を含まないようにした。これにより、一覧の最初のページが2つ生成される問題が解消された。
 - オプション `scheme` を追加。
