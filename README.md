@@ -122,6 +122,7 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		return false;
 	} ,
 	array(
+		'scheme'=>'https',
 		'domain'=>'pickles2.pxt.jp',
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
@@ -169,6 +170,7 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 ### tomk79/px2-page-list-generator v2.0.1 (リリース日未定)
 
 - ページャーの最初のページURLに番号を含まないようにした。これにより、一覧の最初のページが2つ生成される問題が解消された。
+- オプション `scheme` を追加。
 
 ### tomk79/px2-page-list-generator v2.0.0 (2019年1月15日)
 

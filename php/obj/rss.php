@@ -215,12 +215,24 @@ class pxplugin_listMgr_obj_rss{
 	private function get_blog_info( $name ){
 		$options = $this->listMgr->get_options();
 		switch( strtolower( $name ) ){
+			case 'blog_scheme':
+				$rtn = 'https';
+				if( array_key_exists('scheme', $options) && strlen($options['scheme']) ){
+					$rtn = $options['scheme'];
+				}elseif( strlen($this->px->conf()->scheme) ){
+					$rtn = $this->px->conf()->scheme;
+				}
+				return	$rtn;
+				break;
 			case 'blog_domain':
-				return	$options['domain']; break;
+				return	$options['domain'];
+				break;
 			case 'blog_title':
-				return	$options['title']; break;
+				return	$options['title'];
+				break;
 			case 'blog_url':
-				return	$options['url_home']; break;
+				return	$options['url_home'];
+				break;
 			case 'blog_index_url':
 				return	$options['url_index']; break;
 			case 'blog_description':
