@@ -158,7 +158,7 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 
 ## 更新履歴 - Change log
 
-### tomk79/px2-page-list-generator v2.0.2 (リリース日未定)
+### tomk79/px2-page-list-generator v2.0.2 (2020年2月25日)
 
 - オプション `dpp` を追加。リスト1ページあたりの表示件数を設定できる。
 
