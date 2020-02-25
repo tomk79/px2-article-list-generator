@@ -13,20 +13,10 @@ __tomk79/px2-page-list-generator__ は、[Pickles 2](https://pickles2.pxt.jp/) �
 ### 2. composer.json に追記
 
 ```json
-{
-    "require": {
-        "tomk79/px2-page-list-generator": "^2.0.0"
-    }
-}
+$ composer require tomk79/px2-page-list-generator
 ```
 
-### 3. composer を更新
-
-```bash
-$ composer update
-```
-
-### 4. コンテンツに実装
+### 3. コンテンツに実装
 
 `tomk79/px2-page-list-generator` は、コンテンツに実装します。 このドキュメントの Usage(使い方) を参照してください。
 
@@ -116,7 +106,7 @@ $ composer update
 <?php
 $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 	function($page_info){
-		if(@$page_info['article_flg']){
+		if ($page_info['article_flg']) {
 			return true;
 		}
 		return false;
@@ -126,6 +116,7 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		'domain'=>'pickles2.pxt.jp',
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
+		'dpp'=>10,
 		'lang'=>'ja',
 		'url_home'=>'https://pickles2.pxt.jp/',
 		'url_index'=>'https://pickles2.pxt.jp/listsample1/',
@@ -166,6 +157,10 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 ```
 
 ## 更新履歴 - Change log
+
+### tomk79/px2-page-list-generator v2.0.2 (リリース日未定)
+
+- オプション `dpp` を追加。リスト1ページあたりの表示件数を設定できる。
 
 ### tomk79/px2-page-list-generator v2.0.1 (2019年8月2日)
 

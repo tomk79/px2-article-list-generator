@@ -19,9 +19,22 @@ class pxplugin_listMgr_obj_listMgr{
 	public function __construct($px, $cond, $options){
 		$this->px = $px;
 		$this->cond = $cond;
-		$this->options = $options;
+		$this->options = (array) $options;
 		$this->current_page_info = $this->px->site()->get_current_page_info();
 
+
+		// ------ options
+
+		// Display Per Page
+		if( !array_key_exists('dpp', $this->options) ){
+			$this->options['dpp'] = 10;
+		}
+		$this->options['dpp'] = intval($this->options['dpp']);
+		if( $this->options['dpp'] <= 1 ){
+			$this->options['dpp'] = 1;
+		}
+
+		// ------
 		$this->load_list();
 		$this->parse_request();
 	}
@@ -51,7 +64,7 @@ class pxplugin_listMgr_obj_listMgr{
 
 		$paramlist = array();
 		if( strlen($path_param) ){
-			$tmp_binded_path = $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$path_param) ) );
+			// $tmp_binded_path = $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$path_param) ) );
 			// if( is_file($this->px->get_path_controot().$tmp_binded_path) ){
 			// 	return include( $this->px->get_path_controot().$tmp_binded_path );
 			// }
@@ -179,7 +192,7 @@ class pxplugin_listMgr_obj_listMgr{
 	 * 
 	 * @return array ページャー情報を格納した連想配列
 	 */
-	public function get_pager_info( $total_count = null , $current_page_num = null , $display_per_page = 10 , $options = array() ){
+	public function get_pager_info( $total_count = null , $current_page_num = null , $display_per_page = null , $options = array() ){
 		$total_count = count($this->list);
 		$current_page_num = $this->current_pager_num;
 
@@ -193,8 +206,10 @@ class pxplugin_listMgr_obj_listMgr{
 		if( $current_page_num <= 0 ){ $current_page_num = 1; }
 
 		#	ページ当たりの表示件数
-		$display_per_page = intval( $display_per_page );
-		if( $display_per_page <= 0 ){ $display_per_page = 10; }
+		if( is_null($display_per_page) ){
+			$display_per_page = intval( $this->options['dpp'] );
+		}
+		if( $display_per_page <= 1 ){ $display_per_page = 1; }
 
 		#	インデックスの範囲
 		$index_size = 0;
