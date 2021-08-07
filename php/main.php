@@ -19,8 +19,7 @@ class main{
 	 * listMgrオブジェクトを生成する
 	 */
 	public function factory_listMgr( $path_list, $options ){
-		require_once( __DIR__.'/obj/listMgr.php' );
-		$obj = new pxplugin_listMgr_obj_listMgr( $this->px, $path_list, $options );
+		$obj = new listMgr( $this->px, $path_list, $options );
 		return $obj;
 	}
 

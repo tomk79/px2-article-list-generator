@@ -4,7 +4,7 @@ namespace tomk79\pickles2\pageListGenerator;
 /**
  * PX Plugin "listMgr"
  */
-class pxplugin_listMgr_obj_listMgr{
+class listMgr{
 	private $px;
 	private $cond;
 	private $options;
@@ -50,8 +50,7 @@ class pxplugin_listMgr_obj_listMgr{
 	 * rssオブジェクトを生成する
 	 */
 	private function factory_rss(){
-		require_once( __DIR__.'/rss.php' );
-		$obj = new pxplugin_listMgr_obj_rss($this->px, $this);
+		$obj = new rss($this->px, $this);
 		return $obj;
 	}
 

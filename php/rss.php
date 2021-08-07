@@ -2,9 +2,9 @@
 namespace tomk79\pickles2\pageListGenerator;
 
 /**
- * PX Plugin "listMgr"
+ * RSS Manager
  */
-class pxplugin_listMgr_obj_rss{
+class rss{
 	private $px;
 	private $listMgr;
 	private $error_list = array();
