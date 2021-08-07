@@ -302,123 +302,43 @@ class listMgr{
 	}
 
 	/**
-	 * 変数を受け取り、PHPのシンタックスに変換する。
-	 * 
-	 * @param mixed $value 値
-	 * @param array $options オプション
-	 * <dl>
-	 *   <dt>delete_arrayelm_if_null</dt>
-	 *     <dd>配列の要素が `null` だった場合に削除。</dd>
-	 *   <dt>array_break</dt>
-	 *     <dd>配列に適当なところで改行を入れる。</dd>
-	 * </dl>
-	 * @return string PHPシンタックスに変換された値
+	 * 一覧ページを描画する
 	 */
-	private static function data2text( $value = null , $options = array() ){
+	public function draw(){
+		$rtn = '';
+		$rtn .= '<p>開発中です</p>'."\n";
 
-		$RTN = '';
-		if( is_array( $value ) ){
-			#	配列
-			$RTN .= 'array(';
-			if( @$options['array_break'] ){ $RTN .= "\n"; }
-			$keylist = array_keys( $value );
-			foreach( $keylist as $Line ){
-				if( @$options['delete_arrayelm_if_null'] && is_null( @$value[$Line] ) ){
-					#	配列のnull要素を削除するオプションが有効だった場合
-					continue;
-				}
-				$RTN .= ''.self::data2text( $Line ).'=>'.self::data2text( $value[$Line] , $options ).',';
-				if( @$options['array_break'] ){ $RTN .= "\n"; }
-			}
-			$RTN = preg_replace( '/,(?:\r\n|\r|\n)?$/' , '' , $RTN );
-			$RTN .= ')';
-			if( @$options['array_break'] ){ $RTN .= "\n"; }
-			return	$RTN;
+		if( $this->px->get_status() != 200 ){
+			$this->px->bowl()->send('<p>404 - File not found.</p>');
+			return;
 		}
+		$list = $this->get_list();
+		$pager = $this->mk_pager();
+		ob_start(); ?>
 
-		if( is_int( $value ) ){
-			#	数値
-			return	$value;
-		}
+<?php print $pager; ?>
 
-		if( is_float( $value ) ){
-			#	浮動小数点
-			return	$value;
-		}
+<?php foreach( $list as $row ){ ?>
 
-		if( is_string( $value ) ){
-			#	文字列型
-			$RTN = '\''.self::escape_singlequote( $value ).'\'';
-			$RTN = preg_replace( '/\r\n|\r|\n/' , '\'."\\n".\'' , $RTN );
-			$RTN = preg_replace( '/'.preg_quote('<'.'?','/').'/' , '<\'.\'?' , $RTN );
-			$RTN = preg_replace( '/'.preg_quote('?'.'>','/').'/' , '?\'.\'>' , $RTN );
-			$RTN = preg_replace( '/'.preg_quote('/'.'*','/').'/' , '/\'.\'*' , $RTN );
-			$RTN = preg_replace( '/'.preg_quote('*'.'/','/').'/' , '*\'.\'/' , $RTN );
-			$RTN = preg_replace( '/<(scr)(ipt)/i' , '<$1\'.\'$2' , $RTN );
-			$RTN = preg_replace( '/\/(scr)(ipt)>/i' , '/$1\'.\'$2>' , $RTN );
-			$RTN = preg_replace( '/<(sty)(le)/i' , '<$1\'.\'$2' , $RTN );
-			$RTN = preg_replace( '/\/(sty)(le)>/i' , '/$1\'.\'$2>' , $RTN );
-			$RTN = preg_replace( '/<\!\-\-/i' , '<\'.\'!\'.\'--' , $RTN );
-			$RTN = preg_replace( '/\-\->/i' , '--\'.\'>' , $RTN );
-			return	$RTN;
-		}
+<div class="cont_plog_article">
+<h2><span class="date"><?= htmlspecialchars( @date('Y年m月d日(D)',strtotime($row['release_date'])) ); ?></span> <a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>"><?= htmlspecialchars( $row['title'] ); ?></a></h2>
+<p><?= preg_replace('/\r\n|\r|\n/s', '<br />', htmlspecialchars(@$row['article_summary']) ); ?></p>
+<div class="small">
+	公開日：<?= htmlspecialchars( @date('Y年m月d日(D)', strtotime($row['release_date'])) ); ?>
+</div>
+<ul class="horizontal">
+	<li class="small horizontal-li"><a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>" class="icon">記事を読む</a></li>
+</ul>
+</div>
 
-		if( is_null( $value ) ){
-			#	ヌル
-			return	'null';
-		}
+<?php } ?>
 
-		if( is_object( $value ) ){
-			#	オブジェクト型
-			return	'\''.self::escape_singlequote( gettype( $value ) ).'\'';
-		}
 
-		if( is_resource( $value ) ){
-			#	リソース型
-			return	'\''.self::escape_singlequote( gettype( $value ) ).'\'';
-		}
+<?php print $pager; ?>
 
-		if( is_bool( $value ) ){
-			#	ブール型
-			if( $value ){
-				return	'true';
-			}else{
-				return	'false';
-			}
-		}
-
-		return	'\'unknown\'';
-
-	}//data2text()
-
-	/**
-	 * 変数をPHPのソースコードに変換する。
-	 * 
-	 * `include()` に対してそのままの値を返す形になるよう変換する。
-	 *
-	 * @param mixed $value 値
-	 * @param array $options オプション (`self::data2text()`にバイパスされます。`self::data2text()`の項目を参照してください)
-	 * @return string `include()` に対して値 `$value` を返すPHPコード
-	 */
-	private static function data2phpsrc( $value = null , $options = array() ){
-		$RTN = '';
-		$RTN .= '<'.'?php'."\n";
-		$RTN .= '	/'.'* '.@mb_internal_encoding().' *'.'/'."\n";
-		$RTN .= '	return '.self::data2text( $value , $options ).';'."\n";
-		$RTN .= '?'.'>';
-		return	$RTN;
-	}
-
-	/**
-	 * シングルクオートで囲えるようにエスケープ処理する。
-	 *
-	 * @param string $text テキスト
-	 * @return string エスケープされたテキスト
-	 */
-	private static function escape_singlequote($text){
-		$text = preg_replace( '/\\\\/' , '\\\\\\\\' , $text);
-		$text = preg_replace( '/\'/' , '\\\'' , $text);
-		return	$text;
+<?php
+		$rtn .= ob_get_clean();
+		return $rtn;
 	}
 
 }

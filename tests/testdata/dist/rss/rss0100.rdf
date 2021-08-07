@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<channel rdf:about="http://pickles2.pxt.jp/">
+	<channel rdf:about="https://pickles2.pxt.jp/">
 		<title>test list 1</title>
-		<link>http://pickles2.pxt.jp/listsample1/</link>
+		<link>https://pickles2.pxt.jp/listsample1/</link>
 		<description>TEST LIST</description>
 		<items>
 			<rdf:Seq>

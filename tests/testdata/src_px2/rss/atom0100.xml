@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>test list 1</title>
-	<link rel="alternate" href="http://pickles2.pxt.jp/listsample1/" type="text/html" />
+	<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/" type="text/html" />
 	<updated>2015-01-23T00:00:00+00:00</updated>
 	<author>
 		<name>Tomoya Koyanagi</name>
 	</author>
-	<id>f59390b3162cb327ae3ea0778bcc3a25</id>
+	<id>9512d2bd08ac66d46f97a7e9713e674f</id>
 	<entry>
 		<title>Article 1</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/1/?rss=1" type="text/html" />
