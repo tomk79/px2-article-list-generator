@@ -14,20 +14,23 @@
             "php ./vendor/phpunit/phpunit/phpunit"
         ]
     } ,
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "pickles2/px-fw-2.x": "dev-develop",
-        "pickles2/px2-px2dthelper": "dev-develop",
-        "pickles2/broccoli-module-fess": "dev-develop",
-        "pickles2/broccoli-module-plain-html-elements": "dev-develop",
-        "pickles2/px2-sitemapexcel": "dev-develop",
+        "pickles2/px-fw-2.x": "~2.1||~2.0",
+        "pickles2/px2-px2dthelper": "~2.0",
+        "pickles2/broccoli-module-fess": "*",
+        "pickles2/broccoli-module-plain-html-elements": "*",
+        "pickles2/px2-sitemapexcel": "~2.0",
         "phpunit/phpunit": "4.1.*"
     },
     "autoload": {
-        "files": [
-            "php/main.php"
-        ]
+        "psr-4": {
+            "tomk79\\pickles2\\pageListGenerator\\": [
+                "php"
+            ]
+        }
     }
 }
