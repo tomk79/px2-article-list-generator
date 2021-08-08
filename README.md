@@ -161,6 +161,7 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 ### tomk79/px2-page-list-generator v2.0.3 (リリース日未定)
 
 - `$listMgr->draw()` を追加。
+- `$listMgr->get_article_thumb()` を追加。
 
 ### tomk79/px2-page-list-generator v2.0.2 (2020年2月25日)
 

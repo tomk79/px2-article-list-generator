@@ -78,10 +78,10 @@ return call_user_func( function(){
 		// PX=clearcache
 		'picklesFramework2\commands\clearcache::register' ,
 
-		 // PX=config
+		// PX=config
 		'picklesFramework2\commands\config::register' ,
 
-		 // PX=phpinfo
+		// PX=phpinfo
 		'picklesFramework2\commands\phpinfo::register' ,
 
 		// sitemapExcel
@@ -93,6 +93,9 @@ return call_user_func( function(){
 	$conf->funcs->before_content = [
 		// PX=api
 		'picklesFramework2\commands\api::register' ,
+
+		// PX=px2dthelper
+		'tomk79\pickles2\px2dthelper\main::register' ,
 
 		// PX=publish
 		'picklesFramework2\commands\publish::register' ,
@@ -159,6 +162,14 @@ return call_user_func( function(){
 		"PlainHTMLElements" => "../vendor/pickles2/broccoli-module-plain-html-elements/modules/",
 		"FESS" => "../vendor/pickles2/broccoli-module-fess/modules/"
 	];
+
+	/**
+	 * GUIエディタのエンジンの種類
+	 * - `legacy` = 旧GUI編集ツール。(廃止)
+	 * - `broccoli-html-editor` = NodeJSで実装された broccoli-html-editor を使用。
+	 * - `broccoli-html-editor-php` = PHPで実装された broccoli-html-editor を使用。
+	 */
+	$conf->plugins->px2dt->guiEngine = 'broccoli-html-editor-php';
 
 	return $conf;
 } );

@@ -302,6 +302,71 @@ class listMgr{
 	}
 
 	/**
+	 * 記事本文から、サムネイルに使う画像を抽出する
+	 *
+	 * @param object $path ページのパスまたはページID
+	 */
+	public function get_article_thumb( $path ){
+		$path_thumb = $this->px->href('/common/images/article_default_thumb.png');
+
+		$path_content = $path;
+		$current_page_info = $this->px->site()->get_page_info( $path );
+		$path_content = null;
+		if( is_array($current_page_info) && array_key_exists('content', $current_page_info) ){
+			$path_content = $current_page_info['content'];
+		}
+		if( is_null( $path_content ) ){
+			$path_content = $path;
+		}
+
+		foreach( array_keys( get_object_vars( $this->px->conf()->funcs->processor ) ) as $tmp_ext ){
+			if( $this->px->fs()->is_file( './'.$path_content.'.'.$tmp_ext ) ){
+				$path_content = $path_content.'.'.$tmp_ext;
+				break;
+			}
+		}
+
+		if( !is_file('./'.$path_content) ){
+			return $path_thumb;
+		}
+
+		$src_content = file_get_contents('./'.$path_content);
+
+
+		// HTML属性を削除
+		$tmp_path_thumb = null;
+		require_once(__DIR__.'/simple_html_dom.php');
+		$html = str_get_html(
+			$src_content ,
+			true, // $lowercase
+			true, // $forceTagsClosed
+			DEFAULT_TARGET_CHARSET, // $target_charset
+			false, // $stripRN
+			DEFAULT_BR_TEXT, // $defaultBRText
+			DEFAULT_SPAN_TEXT // $defaultSpanText
+		);
+		if( $html ){
+			$ret = $html->find('img');
+			foreach( $ret as $retRow ){
+				// var_dump($retRow->src);
+				$tmp_path_thumb = $retRow->src;
+				break;
+			}
+		}
+
+		if( strlen($tmp_path_thumb) ){
+			if( preg_match( '/^\//', $tmp_path_thumb ) ){
+				$path_thumb = $this->px->conf()->path_controot.$tmp_path_thumb;
+			}else{
+				$path_thumb = dirname($this->px->conf()->path_controot.$path_content).'/'.$tmp_path_thumb;
+			}
+			$path_thumb = $this->px->fs()->normalize_path( $this->px->fs()->get_realpath( $path_thumb ) );
+		}
+
+		return $path_thumb;
+	}
+
+	/**
 	 * 一覧ページを描画する
 	 */
 	public function draw(){
@@ -320,8 +385,13 @@ class listMgr{
 
 <?php foreach( $list as $row ){ ?>
 
+<?php
+$src_thumb = $this->get_article_thumb($row['path']);
+?>
+
 <div class="cont_plog_article">
 <h2><span class="date"><?= htmlspecialchars( @date('Y年m月d日(D)',strtotime($row['release_date'])) ); ?></span> <a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>"><?= htmlspecialchars( $row['title'] ); ?></a></h2>
+<p><img src="<?= htmlspecialchars($src_thumb) ?>" alt="" /></p>
 <p><?= preg_replace('/\r\n|\r|\n/s', '<br />', htmlspecialchars(@$row['article_summary']) ); ?></p>
 <div class="small">
 	公開日：<?= htmlspecialchars( @date('Y年m月d日(D)', strtotime($row['release_date'])) ); ?>
