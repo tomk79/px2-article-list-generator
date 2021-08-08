@@ -399,6 +399,7 @@ class listMgr{
 		$rtn .= $twigHelper->bind(
 			$template,
 			array(
+				'lang' => $this->px->lang(),
 				'pager' => $pager,
 				'list' => $list,
 			),
