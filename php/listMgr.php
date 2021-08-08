@@ -385,41 +385,33 @@ class listMgr{
 		}
 
 		$twigHelper = new helper_twig();
+		$pager = $this->get_pager_info();
+		$list = $this->get_list();
+
+		if( $pager['total_page_count'] > 1 ){
+			for( $idx = $pager['index_start']; $idx <= $pager['index_end']; $idx ++ ){
+				if( $idx != $pager['current'] ){
+					$this->px->add_relatedlink( $this->href_pager( $idx ) );
+				}
+			}
+		}
+
 		$rtn .= $twigHelper->bind(
 			$template,
 			array(
-				'pager' => $this->get_pager_info(),
-				'list' => $this->get_list(),
+				'pager' => $pager,
+				'list' => $list,
+			),
+			array(
+				'href_pager' => function( $page_num ){
+					return $this->href_pager( $page_num );
+				},
+				'href' => function( $path ){
+					return $this->px->href( $path );
+				},
 			)
 		);
 
-		$list = $this->get_list();
-		$pager = $this->mk_pager();
-		ob_start(); ?>
-
-<?php print $pager; ?>
-
-<?php foreach( $list as $row ){ ?>
-
-<div class="cont_plog_article">
-<h2><span class="date"><?= htmlspecialchars( @date('Y年m月d日(D)',strtotime($row['release_date'])) ); ?></span> <a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>"><?= htmlspecialchars( $row['title'] ); ?></a></h2>
-<p><img src="<?= htmlspecialchars($row['thumb']) ?>" alt="" /></p>
-<p><?= preg_replace('/\r\n|\r|\n/s', '<br />', htmlspecialchars(@$row['article_summary']) ); ?></p>
-<div class="small">
-	公開日：<?= htmlspecialchars( @date('Y年m月d日(D)', strtotime($row['release_date'])) ); ?>
-</div>
-<ul class="horizontal">
-	<li class="small horizontal-li"><a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>" class="icon">記事を読む</a></li>
-</ul>
-</div>
-
-<?php } ?>
-
-
-<?php print $pager; ?>
-
-<?php
-		$rtn .= ob_get_clean();
 		return $rtn;
 	}
 

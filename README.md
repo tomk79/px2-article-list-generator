@@ -162,6 +162,7 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 
 - `$listMgr->draw()` を追加。
 - `$listMgr->get_article_thumb()` を追加。
+- 記事一覧ページを Twigテンプレートで表現できるようになった。
 
 ### tomk79/px2-page-list-generator v2.0.2 (2020年2月25日)
 
