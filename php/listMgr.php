@@ -121,8 +121,6 @@ class listMgr{
 		$pager_info = $this->get_pager_info();
 		$rtn = array();
 		for( $i = $pager_info['dpp']*($pager_info['current']-1); $i < $pager_info['dpp']*($pager_info['current']) && @$this->list[$i]; $i++ ){
-			$this->list[$i]['thumb'] = $this->get_article_thumb($this->list[$i]['path']);
-
 			array_push( $rtn, $this->list[$i] );
 		}
 		return $rtn;
@@ -382,6 +380,11 @@ class listMgr{
 			$template = $options->template;
 		}else{
 			$template = file_get_contents( __DIR__.'/../resources/templates/list.twig' );
+			$stylesheet = '';
+			$stylesheet .= '<style> /* Page List Generator */ ';
+			$stylesheet .= htmlspecialchars( file_get_contents( __DIR__.'/../resources/styles/pagelist.min.css' ) );
+			$stylesheet .= '</style>'."\n";
+			$this->px->bowl()->put($stylesheet, 'head');
 		}
 
 		$twigHelper = new helper_twig();
@@ -409,6 +412,9 @@ class listMgr{
 				},
 				'href' => function( $path ){
 					return $this->px->href( $path );
+				},
+				'thumb' => function( $path ){
+					return $this->get_article_thumb($path);
 				},
 			)
 		);

@@ -1,64 +1,71 @@
+<div class="cont-page-list">
+
 {% if pager.total_page_count > 1 %}
 
-	<div class="unit pager">
-		<ul>
-			<li class="pager-first">{% if pager.first %}<a href="{{ href_pager( pager.first ) }}">&lt;&lt;</a>{% else %}<span>&lt;&lt;</span>{% endif %}</li>
-			<li class="pager-prev">{% if pager.prev %}<a href="{{ href_pager( pager.prev ) }}">&lt;</a>{% else %}<span>&lt;</span>{% endif %}</li>
-	{% for i in pager.index_start .. pager.index_end %}
-		{% if i == pager.current %}
-			<li><span class="current">{{ i }}</span></li>
-		{% else %}
-			<li><a href="{{ href_pager( i ) }}">{{ i }}</a></li>
-		{% endif %}
-	{% endfor %}
-			<li class="pager-next">{% if pager.next %}<a href="{{ href_pager( pager.next ) }}">&gt;</a>{% else %}<span>&gt;</span>{% endif %}</li>
-			<li class="pager-last">{% if pager.last %}<a href="{{ href_pager( pager.last ) }}">&gt;&gt;</a>{% else %}<span>&gt;&gt;</span>{% endif %}</li>
-		</ul>
-	</div><!-- /.pager -->
+<div class="cont-page-list__pager">
+	<ul>
+		<li class="cont-page-list__pager-first">{% if pager.first %}<a href="{{ href_pager( pager.first ) }}">&lt;&lt;</a>{% else %}<span>&lt;&lt;</span>{% endif %}</li>
+		<li class="cont-page-list__pager-prev">{% if pager.prev %}<a href="{{ href_pager( pager.prev ) }}">&lt;</a>{% else %}<span>&lt;</span>{% endif %}</li>
+{% for i in pager.index_start .. pager.index_end %}
+	{% if i == pager.current %}
+		<li><span class="cont-page-list__pager-current">{{ i }}</span></li>
+	{% else %}
+		<li><a href="{{ href_pager( i ) }}">{{ i }}</a></li>
+	{% endif %}
+{% endfor %}
+		<li class="cont-page-list__pager-next">{% if pager.next %}<a href="{{ href_pager( pager.next ) }}">&gt;</a>{% else %}<span>&gt;</span>{% endif %}</li>
+		<li class="cont-page-list__pager-last">{% if pager.last %}<a href="{{ href_pager( pager.last ) }}">&gt;&gt;</a>{% else %}<span>&gt;&gt;</span>{% endif %}</li>
+	</ul>
+</div><!-- /.pager -->
 
 {% endif %}
 
 
 
 
+<div class="cont-page-list__list">
+	<ul>
 
 {% for row in list %}
 
-<div class="cont_plog_article">
-<h2><span class="date">{{ row.release_date | date("Y年m月d日(D)") }}</span> <a href="{{ href(row.path) }}">{{ row.title }}</a></h2>
-<p><img src="{{ row.thumb }}" alt="" /></p>
-<p>{{ row.article_summary }}</p>
-<div class="small">
-	公開日：{{ row.release_date | date("Y年m月d日(D)") }}
-</div>
-<ul class="horizontal">
-	<li class="small horizontal-li"><a href="{{ href(row.path) }}" class="icon">記事を読む</a></li>
-</ul>
-</div>
+		<li class="cont-page-list__list-item">
+			<h2><a href="{{ href(row.path) }}">{{ row.title }}</a></h2>
+			<p><img src="{{ thumb(row.path) }}" alt="" /></p>
+			<p>{{ row.article_summary }}</p>
+			<div>
+				公開日：{{ row.release_date | date("Y年m月d日(D)") }}
+			</div>
+			<p>
+				<a href="{{ href(row.path) }}">記事を読む</a>
+			</p>
+		</li>
 
 {% endfor %}
 
+	</ul>
+</div>
 
 
 
 {% if pager.total_page_count > 1 %}
 
-	<div class="unit pager">
-		<ul>
-			<li class="pager-first">{% if pager.first %}<a href="{{ href_pager( pager.first ) }}">&lt;&lt;</a>{% else %}<span>&lt;&lt;</span>{% endif %}</li>
-			<li class="pager-prev">{% if pager.prev %}<a href="{{ href_pager( pager.prev ) }}">&lt;</a>{% else %}<span>&lt;</span>{% endif %}</li>
-	{% for i in pager.index_start .. pager.index_end %}
-		{% if i == pager.current %}
-			<li><span class="current">{{ i }}</span></li>
-		{% else %}
-			<li><a href="{{ href_pager( i ) }}">{{ i }}</a></li>
-		{% endif %}
-	{% endfor %}
-			<li class="pager-next">{% if pager.next %}<a href="{{ href_pager( pager.next ) }}">&gt;</a>{% else %}<span>&gt;</span>{% endif %}</li>
-			<li class="pager-last">{% if pager.last %}<a href="{{ href_pager( pager.last ) }}">&gt;&gt;</a>{% else %}<span>&gt;&gt;</span>{% endif %}</li>
-		</ul>
-	</div><!-- /.pager -->
+<div class="cont-page-list__pager">
+	<ul>
+		<li class="cont-page-list__pager-first">{% if pager.first %}<a href="{{ href_pager( pager.first ) }}">&lt;&lt;</a>{% else %}<span>&lt;&lt;</span>{% endif %}</li>
+		<li class="cont-page-list__pager-prev">{% if pager.prev %}<a href="{{ href_pager( pager.prev ) }}">&lt;</a>{% else %}<span>&lt;</span>{% endif %}</li>
+{% for i in pager.index_start .. pager.index_end %}
+	{% if i == pager.current %}
+		<li><span class="cont-page-list__pager-current">{{ i }}</span></li>
+	{% else %}
+		<li><a href="{{ href_pager( i ) }}">{{ i }}</a></li>
+	{% endif %}
+{% endfor %}
+		<li class="cont-page-list__pager-next">{% if pager.next %}<a href="{{ href_pager( pager.next ) }}">&gt;</a>{% else %}<span>&gt;</span>{% endif %}</li>
+		<li class="cont-page-list__pager-last">{% if pager.last %}<a href="{{ href_pager( pager.last ) }}">&gt;&gt;</a>{% else %}<span>&gt;&gt;</span>{% endif %}</li>
+	</ul>
+</div><!-- /.pager -->
 
 {% endif %}
 
 
+</div>
