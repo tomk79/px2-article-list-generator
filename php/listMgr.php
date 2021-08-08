@@ -382,7 +382,7 @@ class listMgr{
 			$template = file_get_contents( __DIR__.'/../resources/templates/list.twig' );
 			$stylesheet = '';
 			$stylesheet .= '<style> /* Page List Generator */ ';
-			$stylesheet .= htmlspecialchars( file_get_contents( __DIR__.'/../resources/styles/pagelist.min.css' ) );
+			$stylesheet .= file_get_contents( __DIR__.'/../resources/styles/pagelist.min.css' );
 			$stylesheet .= '</style>'."\n";
 			$this->px->bowl()->put($stylesheet, 'head');
 		}

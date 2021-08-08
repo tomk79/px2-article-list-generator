@@ -29,15 +29,21 @@
 {% for row in list %}
 
 		<li class="cont-page-list__list-item">
-			<h2><a href="{{ href(row.path) }}">{{ row.title }}</a></h2>
-			<p><img src="{{ thumb(row.path) }}" alt="" /></p>
-			<p>{{ row.article_summary }}</p>
-			<div>
-				公開日：{{ row.release_date | date("Y年m月d日(D)") }}
+			<div class="cont-page-list__list-title">
+				<p><a href="{{ href(row.path) }}">{{ row.title }}</a></p>
+				<div class="cont-page-list__list-release-date">
+					{% if lang == 'ja' %}公開日: {{ row.release_date | date("Y年m月d日(D)") }}{% else %}Release Date: {{ row.release_date | date("Y/m/d (D)") }}{% endif %}
+				</div>
 			</div>
-			<p>
-				<a href="{{ href(row.path) }}">記事を読む</a>
-			</p>
+			<div class="cont-page-list__list-thumb" style="background-image:url('{{ thumb(row.path) }}');"></div>
+			<div class="cont-page-list__list-body">
+				<div class="cont-page-list__list-summary">
+					<p>{{ row.article_summary }}</p>
+				</div>
+				<p class="cont-page-list__list-link-to-article">
+					<a href="{{ href(row.path) }}" class="cont-page-list__list-a">{% if lang == 'ja' %}記事を読む{% else %}Read More...{% endif %}</a>
+				</p>
+			</div>
 		</li>
 
 {% endfor %}
