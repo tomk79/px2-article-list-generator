@@ -1,22 +1,52 @@
 {
- "bowl": {
-  "main": {
-   "modId": "_sys/root",
-   "fields": {
-    "main": [
-     {
-      "modId": "PlainHTMLElements:PlainHTML/MultiText",
-      "fields": {
-       "main": {
-        "src": "サンプル記事を書いています。\n\n<!-- autoindex -->\n\n## これは、ブログコンテンツのサンプル\n\nサンプル記事です。",
-        "editor": "markdown"
-       }
-      },
-      "anchor": "",
-      "dec": ""
-     }
-    ]
-   }
-  }
- }
+    "bowl": {
+        "main": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": [
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "サンプル記事を書いています。\n\n<!-- autoindex -->\n\n## これは、ブログコンテンツのサンプル\n\nサンプル記事です。",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/image",
+                        "fields": {
+                            "href": {
+                                "src": ""
+                            },
+                            "image_src": {
+                                "resKey": "e1299389878c65c265c09597a50659ba",
+                                "path": "./index_files/resources/photo006_thumb.jpg",
+                                "resType": "",
+                                "webUrl": ""
+                            },
+                            "alt_text": {
+                                "src": ""
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "1枚目の画像が、サムネイルとして抽出されます。\n",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    }
+                ]
+            }
+        }
+    }
 }

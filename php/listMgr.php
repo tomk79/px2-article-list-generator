@@ -11,6 +11,7 @@ class listMgr{
 	private $list;
 	private $current_page_info;
 	private $current_pager_num;
+	private $path_default_thumb_image;
 
 	/**
 	 * コンストラクタ
@@ -21,6 +22,7 @@ class listMgr{
 		$this->cond = $cond;
 		$this->options = (array) $options;
 		$this->current_page_info = $this->px->site()->get_current_page_info();
+		$this->path_default_thumb_image = 'data:image/png;base64,'.base64_encode(file_get_contents(__DIR__.'/../resources/noimage.png'));
 
 
 		// ------ options
@@ -94,7 +96,7 @@ class listMgr{
 					array_push($list, $page_info);
 				}
 			}elseif( gettype($this->cond) == 'string' ){
-				if( @$page_info[$this->cond] ){
+				if( isset($page_info[$this->cond]) && $page_info[$this->cond] ){
 					array_push($list, $page_info);
 				}
 			}
@@ -196,21 +198,21 @@ class listMgr{
 		$current_page_num = $this->current_pager_num;
 
 
-		#	総件数
+		// 総件数
 		$total_count = intval( $total_count );
 		if( $total_count <= 0 ){ return false; }
 
-		#	現在のページ番号
+		// 現在のページ番号
 		$current_page_num = intval( $current_page_num );
 		if( $current_page_num <= 0 ){ $current_page_num = 1; }
 
-		#	ページ当たりの表示件数
+		// ページ当たりの表示件数
 		if( is_null($display_per_page) ){
 			$display_per_page = intval( $this->options['dpp'] );
 		}
 		if( $display_per_page <= 1 ){ $display_per_page = 1; }
 
-		#	インデックスの範囲
+		// インデックスの範囲
 		$index_size = 0;
 		if( !@is_null( $options['index_size'] ) ){
 			$index_size = intval( $options['index_size'] );
@@ -261,36 +263,36 @@ class listMgr{
 			array_push( $RTN['errors'] , 'Current page num ['.$current_page_num.'] is over the Total page count ['.$RTN['total_page_count'].'].' );
 		}
 
-		#	インデックスの範囲
-		#		23:50 2007/08/29 Pickles Framework 0.1.8 追加
+		// インデックスの範囲
+		// 	23:50 2007/08/29 Pickles Framework 0.1.8 追加
 		$RTN['index_start'] = 1;
 		$RTN['index_end'] = $RTN['total_page_count'];
 		if( ( $index_size*2+1 ) >= $RTN['total_page_count'] ){
-			#	範囲のふり幅全開にしたときに、
-			#	総ページ数よりも多かったら、常に全部出す。
+			// 範囲のふり幅全開にしたときに、
+			// 総ページ数よりも多かったら、常に全部出す。
 			$RTN['index_start'] = 1;
 			$RTN['index_end'] = $RTN['total_page_count'];
 		}elseif( ( $index_size < $RTN['current'] ) && ( $index_size < ( $RTN['total_page_count']-$RTN['current'] ) ) ){
-			#	範囲のふり幅全開にしたときに、
-			#	すっぽり収まるようなら、前後に $index_size 分だけ出す。
+			// 範囲のふり幅全開にしたときに、
+			// すっぽり収まるようなら、前後に $index_size 分だけ出す。
 			$RTN['index_start'] = $RTN['current']-$index_size;
 			$RTN['index_end'] = $RTN['current']+$index_size;
 		}elseif( $index_size >= $RTN['current'] ){
-			#	前方が収まらない場合は、
-			#	あまった分を後方に回す
+			// 前方が収まらない場合は、
+			// あまった分を後方に回す
 			$surplus = ( $index_size - $RTN['current'] + 1 );
 			$RTN['index_start'] = 1;
 			$RTN['index_end'] = $RTN['current']+$index_size+$surplus;
 		}elseif( $index_size >= ( $RTN['total_page_count']-$RTN['current'] ) ){
-			#	後方が収まらない場合は、
-			#	あまった分を前方に回す
+			// 後方が収まらない場合は、
+			// あまった分を前方に回す
 			$surplus = ( $index_size - ($RTN['total_page_count']-$RTN['current']) );
 			$RTN['index_start'] = $RTN['current']-$index_size-$surplus;
 			$RTN['index_end'] = $RTN['total_page_count'];
 		}
 
 		return	$RTN;
-	}// get_pager_info()
+	} // get_pager_info()
 
 	/**
 	 * NotFound画面
@@ -307,7 +309,7 @@ class listMgr{
 	 * @param object $path ページのパスまたはページID
 	 */
 	public function get_article_thumb( $path ){
-		$path_thumb = $this->px->href('/common/images/article_default_thumb.png');
+		$path_thumb = $this->path_default_thumb_image;
 
 		$path_content = $path;
 		$current_page_info = $this->px->site()->get_page_info( $path );
@@ -371,7 +373,6 @@ class listMgr{
 	 */
 	public function draw(){
 		$rtn = '';
-		$rtn .= '<p>開発中です</p>'."\n";
 
 		if( $this->px->get_status() != 200 ){
 			$this->px->bowl()->send('<p>404 - File not found.</p>');
