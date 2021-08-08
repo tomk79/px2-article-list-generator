@@ -22,7 +22,7 @@ class listMgr{
 		$this->cond = $cond;
 		$this->options = (array) $options;
 		$this->current_page_info = $this->px->site()->get_current_page_info();
-		$this->path_default_thumb_image = 'data:image/png;base64,'.base64_encode(file_get_contents(__DIR__.'/../resources/noimage.png'));
+		$this->path_default_thumb_image = 'data:image/png;base64,'.base64_encode(file_get_contents(__DIR__.'/../resources/images/noimage.png'));
 
 
 		// ------ options
@@ -121,6 +121,8 @@ class listMgr{
 		$pager_info = $this->get_pager_info();
 		$rtn = array();
 		for( $i = $pager_info['dpp']*($pager_info['current']-1); $i < $pager_info['dpp']*($pager_info['current']) && @$this->list[$i]; $i++ ){
+			$this->list[$i]['thumb'] = $this->get_article_thumb($this->list[$i]['path']);
+
 			array_push( $rtn, $this->list[$i] );
 		}
 		return $rtn;
@@ -371,13 +373,26 @@ class listMgr{
 	/**
 	 * 一覧ページを描画する
 	 */
-	public function draw(){
+	public function draw( $options = array() ){
+		$options = (object) $options;
 		$rtn = '';
 
-		if( $this->px->get_status() != 200 ){
-			$this->px->bowl()->send('<p>404 - File not found.</p>');
-			return;
+		$template = '';
+		if( isset($options->template) && is_string($options->template) ){
+			$template = $options->template;
+		}else{
+			$template = file_get_contents( __DIR__.'/../resources/templates/list.twig' );
 		}
+
+		$twigHelper = new helper_twig();
+		$rtn .= $twigHelper->bind(
+			$template,
+			array(
+				'pager' => $this->get_pager_info(),
+				'list' => $this->get_list(),
+			)
+		);
+
 		$list = $this->get_list();
 		$pager = $this->mk_pager();
 		ob_start(); ?>
@@ -386,13 +401,9 @@ class listMgr{
 
 <?php foreach( $list as $row ){ ?>
 
-<?php
-$src_thumb = $this->get_article_thumb($row['path']);
-?>
-
 <div class="cont_plog_article">
 <h2><span class="date"><?= htmlspecialchars( @date('Y年m月d日(D)',strtotime($row['release_date'])) ); ?></span> <a href="<?= htmlspecialchars( $this->px->href( $row['path'] ) ); ?>"><?= htmlspecialchars( $row['title'] ); ?></a></h2>
-<p><img src="<?= htmlspecialchars($src_thumb) ?>" alt="" /></p>
+<p><img src="<?= htmlspecialchars($row['thumb']) ?>" alt="" /></p>
 <p><?= preg_replace('/\r\n|\r|\n/s', '<br />', htmlspecialchars(@$row['article_summary']) ); ?></p>
 <div class="small">
 	公開日：<?= htmlspecialchars( @date('Y年m月d日(D)', strtotime($row['release_date'])) ); ?>
