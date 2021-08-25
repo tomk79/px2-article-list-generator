@@ -45,21 +45,21 @@ $ composer require tomk79/px2-page-list-generator
 <table>
     <thead>
         <tr>
-            <th style="white-space:nowrap;">\* path</th>
-            <th style="white-space:nowrap;">\* content</th>
-            <th style="white-space:nowrap;">\* id</th>
-            <th style="white-space:nowrap;">\* title</th>
-            <th style="white-space:nowrap;">\* logical_path</th>
-            <th style="white-space:nowrap;">\* article_flg</th>
-            <th style="white-space:nowrap;">\* list_flg</th>
-            <th style="white-space:nowrap;">\* release_date</th>
-            <th style="white-space:nowrap;">\* update_date</th>
-            <th style="white-space:nowrap;">\* article_summary</th>
+            <th style="white-space:nowrap;">* path</th>
+            <th style="white-space:nowrap;">* content</th>
+            <th style="white-space:nowrap;">* id</th>
+            <th style="white-space:nowrap;">* title</th>
+            <th style="white-space:nowrap;">* logical_path</th>
+            <th style="white-space:nowrap;">* article_flg</th>
+            <th style="white-space:nowrap;">* list_flg</th>
+            <th style="white-space:nowrap;">* release_date</th>
+            <th style="white-space:nowrap;">* update_date</th>
+            <th style="white-space:nowrap;">* article_summary</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="white-space:nowrap;">/listsample1/{\*}</td>
+            <td style="white-space:nowrap;">/listsample1/{*}</td>
             <td style="white-space:nowrap;">/listsample1/index.html</td>
             <td></td>
             <td style="white-space:nowrap;">LIST PAGE</td>
@@ -75,7 +75,7 @@ $ composer require tomk79/px2-page-list-generator
             <td style="white-space:nowrap;"></td>
             <td></td>
             <td style="white-space:nowrap;">Article 2</td>
-            <td style="white-space:nowrap;">listsample1/{\*}</td>
+            <td style="white-space:nowrap;">listsample1/{*}</td>
             <td>1</td>
             <td></td>
             <td>2015-09-09</td>
@@ -87,7 +87,7 @@ $ composer require tomk79/px2-page-list-generator
             <td style="white-space:nowrap;"></td>
             <td></td>
             <td style="white-space:nowrap;">Article 1</td>
-            <td style="white-space:nowrap;">listsample1/{\*}</td>
+            <td style="white-space:nowrap;">listsample1/{*}</td>
             <td>1</td>
             <td></td>
             <td>2015-08-28</td>
@@ -98,7 +98,7 @@ $ composer require tomk79/px2-page-list-generator
 </table>
 
 
-### コンテンツを実装
+### 一覧ページのコンテンツを実装
 
 サイトマップの設定ができたら、一覧ページの `content` に設定したコンテンツに次のように実装します。
 
@@ -113,13 +113,13 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 	} ,
 	array(
 		'scheme'=>'https',
-		'domain'=>'pickles2.pxt.jp',
+		'domain'=>'yourdomain.com',
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
 		'dpp'=>10,
 		'lang'=>'ja',
-		'url_home'=>'https://pickles2.pxt.jp/',
-		'url_index'=>'https://pickles2.pxt.jp/listsample1/',
+		'url_home'=>'https://yourdomain.com/',
+		'url_index'=>'https://yourdomain.com/listsample/',
 		'author'=>'Tomoya Koyanagi',
 		'rss'=>array(
 			'atom-1.0'=>$px->get_path_docroot().'rss/atom0100.xml',
@@ -153,8 +153,28 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 
 <?php } ?>
 <?php print $pager; ?>
-
 ```
+
+`$listMgr->draw()` メソッドを使って簡単に実装する方法もあります。
+
+```php
+<?php
+$pageListGenerator = new \tomk79\pickles2\pageListGenerator\main($px);
+$listMgr = $pageListGenerator->create(
+	function($page_info){
+		if( $page_info['article_flg'] ){
+			return true;
+		}
+		return false;
+	},
+	array(
+        /* Any Options */
+    )
+);
+
+echo $listMgr->draw();
+```
+
 
 ## 更新履歴 - Change log
 
