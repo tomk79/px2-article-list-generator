@@ -4,3 +4,9 @@ Thumbs.db
 composer.lock
 /node_modules/
 package-lock.json
+
+# PHPUnit
+.phpunit.result.cache
+
+# PHP Documentor
+.phpdoc

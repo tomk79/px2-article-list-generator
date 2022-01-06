@@ -178,6 +178,11 @@ echo $listMgr->draw();
 
 ## 更新履歴 - Change log
 
+### tomk79/px2-page-list-generator v2.1.0 (リリース日未定)
+
+- サポートするPHPのバージョンを `>=7.3.0` に変更。
+- PHP 8.1 に対応した。
+
 ### tomk79/px2-page-list-generator v2.0.3 (リリース日未定)
 
 - `$listMgr->draw()` を追加。
