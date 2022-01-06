@@ -40,7 +40,7 @@ class rss{
 		unset( $tmp_list );
 
 		foreach( $options['rss'] as $rss_version=>$realpath_rss ){
-			if( !strlen( $realpath_rss ) ){
+			if( !strlen( ''.$realpath_rss ) ){
 				$this->internal_error( 'RSSファイルの保存先が指定されていません。' , __FILE__ , __LINE__ );
 				continue;
 			}
@@ -217,34 +217,34 @@ class rss{
 		switch( strtolower( $name ) ){
 			case 'blog_scheme':
 				$rtn = 'https';
-				if( array_key_exists('scheme', $options) && strlen($options['scheme']) ){
+				if( array_key_exists('scheme', $options) && strlen(''.$options['scheme']) ){
 					$rtn = $options['scheme'];
-				}elseif( property_exists($this->px->conf(), 'scheme') && strlen($this->px->conf()->scheme) ){
+				}elseif( property_exists($this->px->conf(), 'scheme') && strlen(''.$this->px->conf()->scheme) ){
 					$rtn = $this->px->conf()->scheme;
 				}
 				return	$rtn;
 				break;
 			case 'blog_domain':
 				$rtn = null;
-				if( array_key_exists('domain', $options) && strlen($options['domain']) ){
+				if( array_key_exists('domain', $options) && strlen(''.$options['domain']) ){
 					$rtn = $options['domain'];
-				}elseif( property_exists($this->px->conf(), 'domain') && strlen($this->px->conf()->domain) ){
+				}elseif( property_exists($this->px->conf(), 'domain') && strlen(''.$this->px->conf()->domain) ){
 					$rtn = $this->px->conf()->domain;
 				}
 				return	$rtn;
 				break;
 			case 'blog_title':
 				$rtn = null;
-				if( array_key_exists('title', $options) && strlen($options['title']) ){
+				if( array_key_exists('title', $options) && strlen(''.$options['title']) ){
 					$rtn = $options['title'];
-				}elseif( property_exists($this->px->conf(), 'name') && strlen($this->px->conf()->name) ){
+				}elseif( property_exists($this->px->conf(), 'name') && strlen(''.$this->px->conf()->name) ){
 					$rtn = $this->px->conf()->name;
 				}
 				return	$rtn;
 				break;
 			case 'blog_url':
 				$rtn = null;
-				if( array_key_exists('url_home', $options) && strlen($options['url_home']) ){
+				if( array_key_exists('url_home', $options) && strlen(''.$options['url_home']) ){
 					$rtn = $options['url_home'];
 				}else{
 					$rtn = $this->px->canonical('');

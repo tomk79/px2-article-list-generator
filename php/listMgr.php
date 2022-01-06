@@ -61,15 +61,15 @@ class listMgr{
 	 */
 	private function parse_request(){
 		$path_param = $this->px->site()->get_path_param('');
-		$path_param = preg_replace( '/'.$this->px->get_directory_index_preg_pattern().'$/', '', $path_param );
+		$path_param = preg_replace( '/'.$this->px->get_directory_index_preg_pattern().'$/', '', ''.$path_param );
 
 		$paramlist = array();
-		if( strlen($path_param) ){
+		if( strlen(''.$path_param) ){
 			// $tmp_binded_path = $this->px->href( $this->px->site()->bind_dynamic_path_param( $this->current_page_info['path'], array(''=>$path_param) ) );
 			// if( is_file($this->px->get_path_controot().$tmp_binded_path) ){
 			// 	return include( $this->px->get_path_controot().$tmp_binded_path );
 			// }
-			if( !preg_match('/^[1-9][0-9]*\/$/si', $path_param) ){
+			if( !preg_match('/^[1-9][0-9]*\/$/si', ''.$path_param) ){
 				return $this->page_notfound();
 			}
 			$paramlist = explode( '/', $path_param );
@@ -356,8 +356,8 @@ class listMgr{
 			}
 		}
 
-		if( strlen($tmp_path_thumb) ){
-			if( preg_match( '/^\//', $tmp_path_thumb ) ){
+		if( strlen(''.$tmp_path_thumb) ){
+			if( preg_match( '/^\//', ''.$tmp_path_thumb ) ){
 				$path_thumb = $this->px->conf()->path_controot.$tmp_path_thumb;
 			}else{
 				$path_thumb = dirname($this->px->conf()->path_controot.$path_content).'/'.$tmp_path_thumb;
