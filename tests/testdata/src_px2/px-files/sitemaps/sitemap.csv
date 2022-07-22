@@ -18,3 +18,4 @@
 "/listsample1/articles/15/index.html",,,"Article 15",,,,,"/listsample1/{*}",,,,,,,,,,"1","2015-01-23","2015-01-23","Summary 15"
 "/listsample2/{*}","/listsample2/index.html",,"LIST SAMPLE 2",,,,,,"1",,,,,"1",,,,,,,
 "/listsample3/{*}","/listsample3/index.html",,"LIST SAMPLE 3",,,,,,"1",,,,,"1",,,,,,,
+"/listsample4_list_page_id/{*}","/listsample4_list_page_id/index.html",,"LIST SAMPLE 4 list_page_id",,,,,,"1",,,,,"1",,,,,,,

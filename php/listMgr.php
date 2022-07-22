@@ -22,6 +22,9 @@ class listMgr{
 		$this->cond = $cond;
 		$this->options = (array) $options;
 		$this->current_page_info = $this->px->site()->get_current_page_info();
+		if( isset($this->options['list_page_id']) && is_string($this->options['list_page_id']) && strlen($this->options['list_page_id']) ){
+			$this->current_page_info = $this->px->site()->get_page_info( $this->options['list_page_id'] );
+		}
 		$this->path_default_thumb_image = 'data:image/png;base64,'.base64_encode(file_get_contents(__DIR__.'/../resources/images/noimage.png'));
 
 
@@ -312,10 +315,10 @@ class listMgr{
 		$path_thumb = $this->path_default_thumb_image;
 
 		$path_content = $path;
-		$current_page_info = $this->px->site()->get_page_info( $path );
+		$target_page_info = $this->px->site()->get_page_info( $path );
 		$path_content = null;
-		if( is_array($current_page_info) && array_key_exists('content', $current_page_info) ){
-			$path_content = $current_page_info['content'];
+		if( is_array($target_page_info) && array_key_exists('content', $target_page_info) ){
+			$path_content = $target_page_info['content'];
 		}
 		if( is_null( $path_content ) ){
 			$path_content = $path;

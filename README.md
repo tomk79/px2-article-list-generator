@@ -116,6 +116,7 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		'domain'=>'yourdomain.com',
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
+        'list_page_id' => '/blog/{*}', // ページネーションのリンク先をカレントページ以外のリストにしたい場合に指定する (省略可)
 		'dpp'=>10,
 		'lang'=>'ja',
 		'url_home'=>'https://yourdomain.com/',
@@ -177,6 +178,10 @@ echo $listMgr->draw();
 
 
 ## 更新履歴 - Change log
+
+### tomk79/px2-page-list-generator v2.1.1 (リリース日未定)
+
+- `list_page_id` オプションを追加。
 
 ### tomk79/px2-page-list-generator v2.1.0 (2022年1月8日)
 
