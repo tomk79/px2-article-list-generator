@@ -4,7 +4,7 @@ tomk79/px2-page-list-generator
 __tomk79/px2-page-list-generator__ は、[Pickles 2](https://pickles2.pxt.jp/) に、ページ一覧画面を生成する機能を追加します。
 
 
-## Usage - 使い方
+## インストール - Installation
 
 ### 1. Pickles2 をセットアップ
 
