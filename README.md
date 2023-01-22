@@ -214,3 +214,16 @@ echo $listMgr->draw();
 $ cd {$documentRoot}
 $ ./vendor/phpunit/phpunit/phpunit
 ```
+
+
+
+## ライセンス - License
+
+MIT License https://opensource.org/licenses/mit-license.php
+
+
+## 作者 - Author
+
+- Tomoya Koyanagi <tomk79@gmail.com>
+- website: <https://www.pxt.jp/>
+- Twitter: @tomk79 <https://twitter.com/tomk79/>
