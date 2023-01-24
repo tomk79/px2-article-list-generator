@@ -31,7 +31,7 @@ class rss{
 		$list = array();
 		$tmp_list = $this->listMgr->get_list_all();
 		$this->pubDate = 0;
-		for( $i = 0; $i < 50 && @$tmp_list[$i]; $i ++ ){
+		for( $i = 0; $i < 50 && ($tmp_list[$i] ?? null); $i ++ ){
 			array_push( $list, $tmp_list[$i] );
 			if( strtotime($tmp_list[$i]['release_date']) > $this->pubDate ){
 				$this->pubDate = strtotime($tmp_list[$i]['release_date']);

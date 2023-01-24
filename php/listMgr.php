@@ -77,7 +77,7 @@ class listMgr{
 			}
 			$paramlist = explode( '/', $path_param );
 		}
-		if( @!$paramlist[0] ){
+		if( !($paramlist[0] ?? null) ){
 			$paramlist[0] = 1;
 		}
 		$paramlist[0] = intval($paramlist[0]);
@@ -108,7 +108,7 @@ class listMgr{
 		$this->list = $list;
 		unset($list);
 
-		if( is_array( @$this->options['rss'] ) ){
+		if( is_array( $this->options['rss'] ?? null ) ){
 			// RSSパスのオプションが有効な場合
 			$obj_rss = $this->factory_rss();
 			$obj_rss->update_rss_file();
@@ -123,7 +123,7 @@ class listMgr{
 	public function get_list(){
 		$pager_info = $this->get_pager_info();
 		$rtn = array();
-		for( $i = $pager_info['dpp']*($pager_info['current']-1); $i < $pager_info['dpp']*($pager_info['current']) && @$this->list[$i]; $i++ ){
+		for( $i = $pager_info['dpp']*($pager_info['current']-1); $i < $pager_info['dpp']*($pager_info['current']) && ($this->list[$i] ?? null); $i++ ){
 			array_push( $rtn, $this->list[$i] );
 		}
 		return $rtn;
@@ -217,7 +217,7 @@ class listMgr{
 
 		// インデックスの範囲
 		$index_size = 0;
-		if( !@is_null( $options['index_size'] ) ){
+		if( !is_null( $options['index_size'] ?? null ) ){
 			$index_size = intval( $options['index_size'] );
 		}
 		if( $index_size < 1 ){
