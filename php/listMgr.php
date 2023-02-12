@@ -359,6 +359,11 @@ class listMgr{
 			}
 		}
 
+		if( preg_match('/^.*\$px\-\>path\_files\((\"|\')(.*?)(\1)\).*$/s', $tmp_path_thumb, $matched) ){
+			$tmp_localpath_thumb = $matched[2];
+			$tmp_path_thumb = $this->path_files($path_content, $tmp_localpath_thumb);
+		}
+
 		if( strlen(''.$tmp_path_thumb) ){
 			if( preg_match( '/^\//', ''.$tmp_path_thumb ) ){
 				$path_thumb = $this->px->conf()->path_controot.$tmp_path_thumb;
@@ -370,6 +375,55 @@ class listMgr{
 
 		return $path_thumb;
 	}
+
+	/**
+	 * ローカルリソースディレクトリのパスを得る。
+	 *
+	 * @param string $localpath_resource ローカルリソースのパス
+	 * @return string ローカルリソースの実際の絶対パス
+	 */
+	private function path_files( $path_content, $localpath_resource = null ){
+		if( $this->px->site() !== false ){
+			$tmp_page_info = $this->px->site()->get_page_info($path_content);
+			if( is_array($tmp_page_info) ){
+				$path_content = $tmp_page_info['content'];
+			}
+			unset($tmp_page_info);
+		}
+		if( is_null($path_content) ){
+			$path_content = $this->px->req()->get_request_file_path();
+		}
+
+		$rtn = '';
+		if( is_callable($this->px->conf()->path_files) ){
+			// コールバック関数が設定された場合
+			$rtn = call_user_func($this->px->conf()->path_files, $this->px->fs()->normalize_path($path_content) );
+		}elseif( is_string($this->px->conf()->path_files) && strpos(trim($this->px->conf()->path_files ?? ""), 'function') === 0 ){
+			// function で始まる文字列が設定された場合
+			$rtn = call_user_func(eval('return '.$this->px->conf()->path_files.';'), $this->px->fs()->normalize_path($path_content) );
+		}else{
+			$rtn = $this->px->conf()->path_files;
+			$data = array(
+				'dirname'=>$this->px->fs()->normalize_path(dirname($path_content)),
+				'filename'=>basename($this->px->fs()->trim_extension($path_content)),
+				'ext'=>strtolower($this->px->fs()->get_extension($path_content)),
+			);
+			$rtn = str_replace( '{$dirname}', $data['dirname'], $rtn );
+			$rtn = str_replace( '{$filename}', $data['filename'], $rtn );
+			$rtn = str_replace( '{$ext}', $data['ext'], $rtn );
+		}
+
+		$rtn = preg_replace( '/^\/*/', '/', $rtn );
+		$rtn = preg_replace( '/\/*$/', '', $rtn ).'/';
+		$rtn = $rtn.$localpath_resource;
+		if( $this->px->fs()->is_dir('./'.$rtn) ){
+			$rtn .= '/';
+		}
+		$rtn = $this->px->href( $rtn );
+		$rtn = $this->px->fs()->normalize_path($rtn);
+		$rtn = preg_replace( '/^\/+/', '/', $rtn );
+		return $rtn;
+	} // path_files()
 
 	/**
 	 * 一覧ページを描画する
