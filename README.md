@@ -179,6 +179,10 @@ echo $listMgr->draw();
 
 ## 更新履歴 - Change log
 
+### tomk79/px2-page-list-generator v2.1.4 (リリース日未定)
+
+- 内部コードの細かい修正。
+
 ### tomk79/px2-page-list-generator v2.1.3 (2023年2月12日)
 
 - サムネイル抽出ロジックを改善。`$px->path_files()` で呼び出された画像パスに対応できるようになった。

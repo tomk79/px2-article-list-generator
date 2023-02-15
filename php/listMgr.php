@@ -359,7 +359,7 @@ class listMgr{
 			}
 		}
 
-		if( preg_match('/^.*\$px\-\>path\_files\((\"|\')(.*?)(\1)\).*$/s', $tmp_path_thumb, $matched) ){
+		if( preg_match('/^.*\$px\-\>path\_files\((\"|\')(.*?)(\1)\).*$/s', $tmp_path_thumb ?? '', $matched) ){
 			$tmp_localpath_thumb = $matched[2];
 			$tmp_path_thumb = $this->path_files($path_content, $tmp_localpath_thumb);
 		}
