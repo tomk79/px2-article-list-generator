@@ -35,7 +35,9 @@
 					{% if lang == 'ja' %}公開日: {{ row.release_date | date("Y年m月d日(D)") }}{% else %}Release Date: {{ row.release_date | date("Y/m/d (D)") }}{% endif %}
 				</div>
 			</div>
-			<div class="px2-page-list__list-thumb" style="background-image:url('{{ thumb(row.path) }}');"></div>
+			<div class="px2-page-list__list-thumb">
+				<a href="{{ href(row.path) }}" style="background-image:url('{{ thumb(row.path) }}');"></a>
+			</div>
 			<div class="px2-page-list__list-body">
 				<div class="px2-page-list__list-summary">
 					<p>{{ row.article_summary }}</p>

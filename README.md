@@ -182,6 +182,7 @@ echo $listMgr->draw();
 ### tomk79/px2-page-list-generator v2.2.0 (リリース日未定)
 
 - クラス名を変更: `.cont-page-list` -> `.px2-page-list`
+- スタイリングに関する修正。
 - 内部コードの細かい修正。
 
 ### tomk79/px2-page-list-generator v2.1.3 (2023年2月12日)

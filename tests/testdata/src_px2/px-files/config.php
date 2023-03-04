@@ -43,29 +43,29 @@ return call_user_func( function(){
 		//     - その他 = extension 名
 		// パターンは先頭から検索され、はじめにマッチした設定を採用する。
 		// ワイルドカードとして "*"(アスタリスク) を使用可。
-		'/.htaccess' => 'ignore' ,
-		'/.px_execute.php' => 'ignore' ,
-		'/px-files/*' => 'ignore' ,
-		'*.ignore/*' => 'ignore' ,
-		'*.ignore.*' => 'ignore' ,
-		'/composer.json' => 'ignore' ,
-		'/composer.lock' => 'ignore' ,
-		'/README.md' => 'ignore' ,
-		'/vendor/*' => 'ignore' ,
-		'*/.DS_Store' => 'ignore' ,
-		'*/Thumbs.db' => 'ignore' ,
-		'*/.svn/*' => 'ignore' ,
-		'*/.git/*' => 'ignore' ,
-		'*/.gitignore' => 'ignore' ,
+		'/.htaccess' => 'ignore',
+		'/.px_execute.php' => 'ignore',
+		'/px-files/*' => 'ignore',
+		'*.ignore/*' => 'ignore',
+		'*.ignore.*' => 'ignore',
+		'/composer.json' => 'ignore',
+		'/composer.lock' => 'ignore',
+		'/README.md' => 'ignore',
+		'/vendor/*' => 'ignore',
+		'*/.DS_Store' => 'ignore',
+		'*/Thumbs.db' => 'ignore',
+		'*/.svn/*' => 'ignore',
+		'*/.git/*' => 'ignore',
+		'*/.gitignore' => 'ignore',
 
-		'*.html' => 'html' ,
-		'*.htm' => 'html' ,
-		'*.css' => 'css' ,
-		'*.js' => 'js' ,
-		'*.png' => 'direct' ,
-		'*.jpg' => 'direct' ,
-		'*.gif' => 'direct' ,
-		'*.svg' => 'direct' ,
+		'*.html' => 'html',
+		'*.htm' => 'html',
+		'*.css' => 'css',
+		'*.js' => 'js',
+		'*.png' => 'direct',
+		'*.jpg' => 'direct',
+		'*.gif' => 'direct',
+		'*.svg' => 'direct',
 	);
 
 
@@ -76,29 +76,31 @@ return call_user_func( function(){
 	// funcs: Before sitemap
 	$conf->funcs->before_sitemap = [
 		// PX=clearcache
-		'picklesFramework2\commands\clearcache::register' ,
+		'picklesFramework2\commands\clearcache::register',
 
 		// PX=config
-		'picklesFramework2\commands\config::register' ,
+		'picklesFramework2\commands\config::register',
 
 		// PX=phpinfo
-		'picklesFramework2\commands\phpinfo::register' ,
+		'picklesFramework2\commands\phpinfo::register',
 
 		// sitemapExcel
-		'tomk79\pickles2\sitemap_excel\pickles_sitemap_excel::exec'
+		'tomk79\pickles2\sitemap_excel\pickles_sitemap_excel::exec',
 
+		// px2-serve
+		\tomk79\pickles2\px2serve\serve::register(),
 	];
 
 	// funcs: Before content
 	$conf->funcs->before_content = [
 		// PX=api
-		'picklesFramework2\commands\api::register' ,
+		'picklesFramework2\commands\api::register',
 
 		// PX=px2dthelper
-		'tomk79\pickles2\px2dthelper\main::register' ,
+		'tomk79\pickles2\px2dthelper\main::register',
 
 		// PX=publish
-		'picklesFramework2\commands\publish::register' ,
+		'picklesFramework2\commands\publish::register',
 
 	];
 
@@ -108,31 +110,31 @@ return call_user_func( function(){
 
 	$conf->funcs->processor->html = [
 		// ページ内目次を自動生成する
-		'picklesFramework2\processors\autoindex\autoindex::exec' ,
+		'picklesFramework2\processors\autoindex\autoindex::exec',
 
 		// テーマ
-		'theme'=>'picklesFramework2\theme\theme::exec' ,
+		'theme'=>'picklesFramework2\theme\theme::exec',
 
 		// Apache互換のSSIの記述を解決する
-		'picklesFramework2\processors\ssi\ssi::exec' ,
+		'picklesFramework2\processors\ssi\ssi::exec',
 
 		// output_encoding, output_eol_coding の設定に従ってエンコード変換する。
-		'picklesFramework2\processors\encodingconverter\encodingconverter::exec' ,
+		'picklesFramework2\processors\encodingconverter\encodingconverter::exec',
 	];
 
 	$conf->funcs->processor->css = [
 		// output_encoding, output_eol_coding の設定に従ってエンコード変換する。
-		'picklesFramework2\processors\encodingconverter\encodingconverter::exec' ,
+		'picklesFramework2\processors\encodingconverter\encodingconverter::exec',
 	];
 
 	$conf->funcs->processor->js = [
 		// output_encoding, output_eol_coding の設定に従ってエンコード変換する。
-		'picklesFramework2\processors\encodingconverter\encodingconverter::exec' ,
+		'picklesFramework2\processors\encodingconverter\encodingconverter::exec',
 	];
 
 	$conf->funcs->processor->md = [
 		// Markdown文法を処理する
-		'picklesFramework2\processors\md\ext::exec' ,
+		'picklesFramework2\processors\md\ext::exec',
 
 		// html の処理を追加
 		$conf->funcs->processor->html ,
@@ -140,7 +142,7 @@ return call_user_func( function(){
 
 	$conf->funcs->processor->scss = [
 		// SCSS文法を処理する
-		'picklesFramework2\processors\scss\ext::exec' ,
+		'picklesFramework2\processors\scss\ext::exec',
 
 		// css の処理を追加
 		$conf->funcs->processor->css ,

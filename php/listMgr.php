@@ -295,14 +295,13 @@ class listMgr{
 		}
 
 		return	$RTN;
-	} // get_pager_info()
+	}
 
 	/**
 	 * NotFound画面
 	 */
 	private function page_notfound(){
 		$this->px->set_status(404);// 404 NotFound
-		// $this->px->bowl()->send('<p>404 - File not found.</p>');
 		return;
 	}
 
@@ -423,7 +422,7 @@ class listMgr{
 		$rtn = $this->px->fs()->normalize_path($rtn);
 		$rtn = preg_replace( '/^\/+/', '/', $rtn );
 		return $rtn;
-	} // path_files()
+	}
 
 	/**
 	 * 一覧ページを描画する
@@ -439,7 +438,7 @@ class listMgr{
 			$template = file_get_contents( __DIR__.'/../resources/templates/list.twig' );
 			$stylesheet = '';
 			$stylesheet .= '<style> /* Page List Generator */ ';
-			$stylesheet .= file_get_contents( __DIR__.'/../resources/styles/pagelist.min.css' );
+			$stylesheet .= file_get_contents( __DIR__.'/../resources/styles/pagelist.css' );
 			$stylesheet .= '</style>'."\n";
 			$this->px->bowl()->put($stylesheet, 'head');
 		}
@@ -478,5 +477,4 @@ class listMgr{
 
 		return $rtn;
 	}
-
 }

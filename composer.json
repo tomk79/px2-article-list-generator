@@ -9,12 +9,21 @@
             "email": "tomk79@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "scripts":{
+		"start": [
+			"@php ./tests/testdata/src_px2/.px_execute.php \"/?PX=serve&S=localhost:8080\""
+		],
+		"start-pub": [
+			"@php ./tests/testdata/src_px2/.px_execute.php \"/?PX=serve.pub&S=localhost:8081\""
+		],
         "test": [
             "php ./vendor/phpunit/phpunit/phpunit"
         ]
-    } ,
-    "minimum-stability": "dev",
+    },
+    "config": {
+        "process-timeout": 0
+    },
     "require": {
         "php": ">=7.3.0",
         "twig/twig": ">=1.35"
@@ -25,6 +34,7 @@
         "pickles2/broccoli-module-fess": "*",
         "pickles2/broccoli-module-plain-html-elements": "*",
         "pickles2/px2-sitemapexcel": "~2.0",
+        "tomk79/px2-serve": "~0.1.3",
         "phpunit/phpunit": "~9.5"
     },
     "autoload": {
