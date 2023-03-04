@@ -2,12 +2,15 @@
 $pageListGenerator = new \tomk79\pickles2\pageListGenerator\main($px);
 $listMgr = $pageListGenerator->create(
 	function($page_info){
-		if(@$page_info['article_flg']){
+		if($page_info['article_flg'] ?? null){
 			return true;
 		}
 		return false;
 	} ,
-	array()
+	array(
+		"orderby" => "update_date",
+		"scending" => "desc",
+	)
 );
 
 echo $listMgr->draw();

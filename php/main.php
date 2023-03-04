@@ -9,7 +9,7 @@ class main{
 
 	/**
 	 * コンストラクタ
-	 * @param $px = PxFWコアオブジェクト
+	 * @param object $px PxFWコアオブジェクト
 	 */
 	public function __construct($px){
 		$this->px = $px;
@@ -17,17 +17,21 @@ class main{
 
 	/**
 	 * listMgrオブジェクトを生成する
+	 * @param mixed $cond 条件式
+	 * @param array $options オプション
 	 */
-	public function factory_listMgr( $path_list, $options ){
-		$obj = new listMgr( $this->px, $path_list, $options );
+	public function factory_listMgr( $cond, $options ){
+		$obj = new listMgr( $this->px, $cond, $options );
 		return $obj;
 	}
 
 	/**
 	 * areas
+	 * @param mixed $cond 条件式
+	 * @param array $options オプション
 	 */
-	public function create( $path_list, $options ){
-		return $this->factory_listMgr($path_list, $options);
+	public function create( $cond, $options ){
+		return $this->factory_listMgr($cond, $options);
 	}
 
 }

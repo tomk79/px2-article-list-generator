@@ -15,7 +15,28 @@ class listMgr{
 
 	/**
 	 * コンストラクタ
-	 * @param $px = PxFWコアオブジェクト
+	 * @param object $px PxFWコアオブジェクト
+	 * @param mixed $cond 条件式
+	 * サイトマップ項目のキーを文字列で指定します。
+	 * コールバック関数を指定して詳細な条件を定義することもできます。
+	 * @param array $options オプション
+	 * - scheme: ブログサイトのスキーマ名
+	 * - domain: ブログサイトのドメイン名
+	 * - title: ブログのタイトル
+	 * - description: ブログの説明
+	 * - list_page_id: 一覧ページのIDまたはパス
+	 * - orderby: 並び替えに用いるサイトマップ項目のキー (v2.2.0 で追加)
+	 * - scending: 昇順(asc)、または降順(desc)。デフォルトは `desc` です。 orderby と併せて指定します。 (v2.2.0 で追加)
+	 * - dpp: リストの1ページあたりの記事数
+	 * - rss: RSSの出力設定
+	 * - lang: 言語コード
+	 * - url_home: ホームページのURL
+	 * - url_index: 記事一覧ページのURL
+	 * - author: 記者名
+	 * - rss: RSSの出力設定
+	 *     - atom-1.0
+	 *     - rss-1.0
+	 *     - rss-2.0
 	 */
 	public function __construct($px, $cond, $options){
 		$this->px = $px;
@@ -94,15 +115,38 @@ class listMgr{
 		$sitemap = $this->px->site()->get_sitemap();
 		$list = array();
 		foreach( $sitemap as $page_info ){
+			$is_article = false;
 			if( is_callable($this->cond) ){
 				if( call_user_func_array( $this->cond, array($page_info) ) ){
-					array_push($list, $page_info);
+					$is_article = true;
 				}
-			}elseif( gettype($this->cond) == 'string' ){
-				if( isset($page_info[$this->cond]) && $page_info[$this->cond] ){
-					array_push($list, $page_info);
+			}elseif( is_string($this->cond) ){
+				if( $page_info[$this->cond] ?? null ){
+					$is_article = true;
 				}
 			}
+			if( $is_article ){
+				array_push($list, $page_info);
+			}
+		}
+
+		if( $this->options['orderby'] ?? null ){
+			$sort_orderby = $this->options['orderby'];
+			$sort_scending = strtolower($this->options['scending'] ?? '');
+			usort($list, function ($a, $b) use ($sort_orderby, $sort_scending){
+				if( !isset($a[$sort_orderby]) || !isset($b[$sort_orderby]) ){
+					return 0;
+				}
+				if( $a[$sort_orderby] === $b[$sort_orderby] ){
+					return 0;
+				}
+				if( $a[$sort_orderby] > $b[$sort_orderby] ){
+					return ($sort_scending == 'asc' ? 1 : -1);
+				}elseif($a[$sort_orderby] < $b[$sort_orderby]){
+					return ($sort_scending == 'asc' ? -1 : 1);
+				}
+				return 0;
+			});
 		}
 
 		$this->list = $list;

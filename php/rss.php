@@ -18,7 +18,6 @@ class rss{
 		$this->listMgr = $listMgr;
 	}
 
-
 	/**
 	 * RSSファイルを更新する。
 	 */
@@ -56,18 +55,18 @@ class rss{
 				continue;
 			}
 
-			#--------------------------------------
-			#	RSSを生成して保存する。
+			// --------------------------------------
+			// RSSを生成して保存する。
 			$SRC_RSS = '';
 			switch( $rss_version ){
 				case 'rss-1.0':
-					$SRC_RSS = $this->generate_rss_0100( $list );//RSS 1.0
+					$SRC_RSS = $this->generate_rss_0100( $list ); // RSS 1.0
 					break;
 				case 'rss-2.0':
-					$SRC_RSS = $this->generate_rss_0200( $list );//RSS 2.0
+					$SRC_RSS = $this->generate_rss_0200( $list ); // RSS 2.0
 					break;
 				case 'atom-1.0':
-					$SRC_RSS = $this->generate_rss_atom( $list );//Atom 1.0
+					$SRC_RSS = $this->generate_rss_atom( $list ); // Atom 1.0
 					break;
 			}
 			if( !$this->px->fs()->save_file( $realpath_rss , $SRC_RSS ) ){
@@ -76,9 +75,6 @@ class rss{
 			unset( $path_rss , $SRC_RSS );
 
 		}
-
-#		$this->internal_error( '開発中です。' , __FILE__ , __LINE__ );
-#		return	false;
 
 		if( $this->get_error_count() ){
 			return	false;
@@ -138,13 +134,13 @@ class rss{
 		$RTN .= '		<language>'.htmlspecialchars( $this->get_blog_info('language') ).'</language>'."\n";
 		$RTN .= '		<description>'.htmlspecialchars( $this->get_blog_info('blog_description') ).'</description>'."\n";
 		$RTN .= '		<pubDate>'.$this->mk_releasedate_string( $this->pubDate ).'</pubDate>'."\n";
-#		$RTN .= '		<guid>'.htmlspecialchars( $this->get_blog_info('blog_index_url') ).'</guid>'."\n";
+		// $RTN .= '		<guid>'.htmlspecialchars( $this->get_blog_info('blog_index_url') ).'</guid>'."\n";
 		foreach( $article_array as $Line ){
 			$article_url = $this->mk_article_url( $Line['path'] );
 			$RTN .= '		<item>'."\n";
 			$RTN .= '			<title>'.htmlspecialchars( $Line['title'] ).'</title>'."\n";
 			$RTN .= '			<link>'.htmlspecialchars( $article_url ).'</link>'."\n";
-			$RTN .= '			<description><![CDATA['.htmlspecialchars( $Line['article_summary'] ).']]></description>'."\n";//descriptionはHTMLとして解釈されるのか？
+			$RTN .= '			<description><![CDATA['.htmlspecialchars( $Line['article_summary'] ).']]></description>'."\n"; // descriptionはHTMLとして解釈されるのか？
 			$RTN .= '			<pubDate>'.$this->mk_releasedate_string( $Line['release_date'] ).'</pubDate>'."\n";
 			$RTN .= '			<guid isPermaLink="true">'.htmlspecialchars( $article_url ).'</guid>'."\n";
 			$RTN .= '		</item>'."\n";
@@ -175,8 +171,8 @@ class rss{
 			$RTN .= '		<link rel="alternate" href="'.htmlspecialchars( $article_url ).'" type="text/html" />'."\n";
 			$RTN .= '		<id>'.htmlspecialchars( md5( $article_url ) ).'</id>'."\n";
 			$RTN .= '		<updated>'.$this->mk_releasedate_string( $Line['release_date'] ).'</updated>'."\n";
-			$RTN .= '		<summary>'.htmlspecialchars( $Line['article_summary'] ).'</summary>'."\n";//summary要素はHTMLとして解釈されない。type="html"をつけるとHTMLになるのかも。
-			$RTN .= '		<content>'.htmlspecialchars( $Line['article_summary'] ).'</content>'."\n";//content要素はHTMLとして解釈されない。type="html"をつけるとHTMLになるのかも。
+			$RTN .= '		<summary>'.htmlspecialchars( $Line['article_summary'] ).'</summary>'."\n"; // summary要素はHTMLとして解釈されない。type="html"をつけるとHTMLになるのかも。
+			$RTN .= '		<content>'.htmlspecialchars( $Line['article_summary'] ).'</content>'."\n"; // content要素はHTMLとして解釈されない。type="html"をつけるとHTMLになるのかも。
 			$RTN .= '	</entry>'."\n";
 		}
 		$RTN .= '</feed>'."\n";
@@ -291,5 +287,3 @@ class rss{
 	}
 
 }
-
-?>

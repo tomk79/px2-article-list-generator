@@ -117,6 +117,8 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 		'title'=>'test list 1',
 		'description'=>'TEST LIST',
         'list_page_id' => '/blog/{*}', // ページネーションのリンク先をカレントページ以外のリストにしたい場合に指定する (省略可)
+        "orderby" => "update_date", // 並び替えに用いるサイトマップ項目のキー (v2.2.0 で追加)
+        "scending" => "desc", // 昇順(asc)、または降順(desc)。デフォルトは `desc` です。 orderby と併せて指定します。 (v2.2.0 で追加)
 		'dpp'=>10,
 		'lang'=>'ja',
 		'url_home'=>'https://yourdomain.com/',
@@ -181,6 +183,7 @@ echo $listMgr->draw();
 
 ### tomk79/px2-page-list-generator v2.2.0 (リリース日未定)
 
+- オプションに `orderby` と `scending` を追加。
 - クラス名を変更: `.cont-page-list` -> `.px2-page-list`
 - スタイリングに関する修正。
 - 内部コードの細かい修正。

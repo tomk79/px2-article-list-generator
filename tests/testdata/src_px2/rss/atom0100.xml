@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>test list 1</title>
 	<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/" type="text/html" />
-	<updated>2015-01-23T00:00:00+00:00</updated>
+	<updated>2015-02-07T00:00:00+00:00</updated>
 	<author>
 		<name>Tomoya Koyanagi</name>
 	</author>
@@ -19,7 +19,7 @@
 		<title>Article 2</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/2/?rss=1" type="text/html" />
 		<id>f05890c2f3831b0ebb7a072b6999118c</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-24T00:00:00+00:00</updated>
 		<summary>Summary 2</summary>
 		<content>Summary 2</content>
 	</entry>
@@ -27,7 +27,7 @@
 		<title>Article 3</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/3/?rss=1" type="text/html" />
 		<id>67302ca94aa52577b94bcbea2627f9da</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-25T00:00:00+00:00</updated>
 		<summary>Summary 3</summary>
 		<content>Summary 3</content>
 	</entry>
@@ -35,7 +35,7 @@
 		<title>Article 4</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/4/?rss=1" type="text/html" />
 		<id>fb85f21ca32cf3d259acafe77466e34c</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-26T00:00:00+00:00</updated>
 		<summary>Summary 4</summary>
 		<content>Summary 4</content>
 	</entry>
@@ -43,7 +43,7 @@
 		<title>Article 5</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/5/?rss=1" type="text/html" />
 		<id>bfe1f87cef7a33e4fbf7180528772841</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-27T00:00:00+00:00</updated>
 		<summary>Summary 5</summary>
 		<content>Summary 5</content>
 	</entry>
@@ -51,7 +51,7 @@
 		<title>Article 6</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/6/?rss=1" type="text/html" />
 		<id>ad91f6d916ba48ff7c9d9d7efe5d7a4c</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-28T00:00:00+00:00</updated>
 		<summary>Summary 6</summary>
 		<content>Summary 6</content>
 	</entry>
@@ -59,7 +59,7 @@
 		<title>Article 7</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/7/?rss=1" type="text/html" />
 		<id>6ea9fedf451bb661cd6f080cc4b00ecc</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-29T00:00:00+00:00</updated>
 		<summary>Summary 7</summary>
 		<content>Summary 7</content>
 	</entry>
@@ -67,7 +67,7 @@
 		<title>Article 8</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/8/?rss=1" type="text/html" />
 		<id>c94fd9ae0b1ee3cbce35d3a1983de120</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-01-30T00:00:00+00:00</updated>
 		<summary>Summary 8</summary>
 		<content>Summary 8</content>
 	</entry>
@@ -75,7 +75,7 @@
 		<title>Article 9</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/9/?rss=1" type="text/html" />
 		<id>8ac74c3e04a95a1302dbdae405b48ba0</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-01T00:00:00+00:00</updated>
 		<summary>Summary 9</summary>
 		<content>Summary 9</content>
 	</entry>
@@ -83,7 +83,7 @@
 		<title>Article 10</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/10/?rss=1" type="text/html" />
 		<id>b081a7134ab900f4c53516252c5562ac</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-02T00:00:00+00:00</updated>
 		<summary>Summary 10</summary>
 		<content>Summary 10</content>
 	</entry>
@@ -91,7 +91,7 @@
 		<title>Article 11</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/11/?rss=1" type="text/html" />
 		<id>e88d2d51aa6ad2304dc1f7996d9d90b9</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-03T00:00:00+00:00</updated>
 		<summary>Summary 11</summary>
 		<content>Summary 11</content>
 	</entry>
@@ -99,7 +99,7 @@
 		<title>Article 12</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/12/?rss=1" type="text/html" />
 		<id>8a0095d00ab529656ee7634460cb5b17</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-04T00:00:00+00:00</updated>
 		<summary>Summary 12</summary>
 		<content>Summary 12</content>
 	</entry>
@@ -107,7 +107,7 @@
 		<title>Article 13</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/13/?rss=1" type="text/html" />
 		<id>a09089bd56beba86d03b5f56672a29fc</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-05T00:00:00+00:00</updated>
 		<summary>Summary 13</summary>
 		<content>Summary 13</content>
 	</entry>
@@ -115,7 +115,7 @@
 		<title>Article 14</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/14/?rss=1" type="text/html" />
 		<id>a3cdb687f26301005bd4fe61948ae5c7</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-06T00:00:00+00:00</updated>
 		<summary>Summary 14</summary>
 		<content>Summary 14</content>
 	</entry>
@@ -123,7 +123,7 @@
 		<title>Article 15</title>
 		<link rel="alternate" href="https://pickles2.pxt.jp/listsample1/articles/15/?rss=1" type="text/html" />
 		<id>4b776c88cc5475f2c28a8c705c0de40a</id>
-		<updated>2015-01-23T00:00:00+00:00</updated>
+		<updated>2015-02-07T00:00:00+00:00</updated>
 		<summary>Summary 15</summary>
 		<content>Summary 15</content>
 	</entry>
