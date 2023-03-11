@@ -181,7 +181,7 @@ echo $listMgr->draw();
 
 ## 更新履歴 - Change log
 
-### tomk79/px2-page-list-generator v2.2.0 (リリース日未定)
+### tomk79/px2-page-list-generator v2.2.0 (2023年3月11日)
 
 - オプションに `orderby` と `scending` を追加。
 - クラス名を変更: `.cont-page-list` -> `.px2-page-list`
