@@ -17,6 +17,12 @@ class register{
 			return __CLASS__.'::'.__FUNCTION__.'('.( is_array($px) ? json_encode($px) : '' ).')';
 		}
 
+        $request_file_path = $px->req()->get_request_file_path();
+        if( !preg_match('/\.html?$/i', $request_file_path) ){
+            // HTML以外のコンテンツでは実行しない
+            return;
+        }
+ 
         $blogDefine = new blogDefine($px, $options);
         $blogDefine->load_blog_page_list();
         return;
