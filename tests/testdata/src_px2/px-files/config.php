@@ -93,6 +93,13 @@ return call_user_func( function(){
 
 	// funcs: Before content
 	$conf->funcs->before_content = [
+		// ブログを定義する
+		tomk79\pickles2\pageListGenerator\register::define_blog(array(
+			"blog_id" => "sample_1",
+			"logical_path" => "/define_sample_1/{*}",
+			"path_template" => "/define_sample_1/{*}",
+		)),
+
 		// PX=api
 		'picklesFramework2\commands\api::register',
 

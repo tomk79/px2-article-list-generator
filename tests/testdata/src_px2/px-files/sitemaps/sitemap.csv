@@ -19,3 +19,6 @@
 "/listsample2/{*}","/listsample2/index.html",,"LIST SAMPLE 2",,,,,,"1",,,,,"1",,,,,,,
 "/listsample3/{*}","/listsample3/index.html",,"LIST SAMPLE 3",,,,,,"1",,,,,"1",,,,,,,
 "/listsample4_list_page_id/{*}","/listsample4_list_page_id/index.html",,"LIST SAMPLE 4 list_page_id",,,,,,"1",,,,,"1",,,,,,,
+"/define_sample_1/{*}",,,"DEFINE SAMPLE 1",,,,,,"1",,,,,"1",,,,,,,
+"/define_sample_2/{*}",,,"DEFINE SAMPLE 2",,,,,,"1",,,,,"1",,,,,,,
+"/define_sample_3/{*}",,,"DEFINE SAMPLE 3",,,,,,"1",,,,,"1",,,,,,,

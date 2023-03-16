@@ -181,6 +181,10 @@ echo $listMgr->draw();
 
 ## 更新履歴 - Change log
 
+### tomk79/px2-page-list-generator v2.3.0 (リリース日未定)
+
+- ブログリスト機能を追加した。
+
 ### tomk79/px2-page-list-generator v2.2.0 (2023年3月11日)
 
 - オプションに `orderby` と `scending` を追加。
