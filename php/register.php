@@ -17,5 +17,8 @@ class register{
 			return __CLASS__.'::'.__FUNCTION__.'('.( is_array($px) ? json_encode($px) : '' ).')';
 		}
 
+        $blogDefine = new blogDefine($px, $options);
+        $blogDefine->load_blog_page_list();
+        return;
 	}
 }
