@@ -29,7 +29,7 @@ return call_user_func( function(){
 	$conf->output_eol_coding = 'lf';
 	$conf->session_name = 'PXSID';
 	$conf->session_expire = 1800;
-	$conf->allow_pxcommands = 0; // PX Commands のウェブインターフェイスからの実行を許可
+	$conf->allow_pxcommands = 1; // PX Commands のウェブインターフェイスからの実行を許可
 
 	// commands
 	$conf->commands = new stdClass;
@@ -75,6 +75,12 @@ return call_user_func( function(){
 
 	// funcs: Before sitemap
 	$conf->funcs->before_sitemap = [
+		// px2-clover
+		tomk79\pickles2\px2clover\register::clover(array(
+			"app_mode" => "web",
+			"protect_preview" => false, // プレビューに認証を要求するか？
+		)),
+
 		// PX=clearcache
 		'picklesFramework2\commands\clearcache::register',
 
