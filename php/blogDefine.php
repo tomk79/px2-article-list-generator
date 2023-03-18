@@ -23,7 +23,8 @@ class blogDefine{
 	 * ブログページを読み込む
 	 */
 	public function load_blog_page_list(){
-		$path_blog_page_list_cache_dir = $this->px->get_realpath_homedir().'_sys/ram/caches/blogss/';
+		$path_blog_page_list_cache_dir = $this->px->get_realpath_homedir().'_sys/ram/caches/blogs/';
+		$blogmap_array = array();
 
         $realpath_homedir = $this->px->get_realpath_homedir();
         $realpath_blog_basedir = $realpath_homedir.'blogs/';
@@ -108,10 +109,36 @@ class blogDefine{
 			$tmp_array['list_flg'] = 0;
 			$tmp_array['category_top_flg'] = 0;
 
+			$blogmap_array[$tmp_array['path']] = $tmp_array;
+
 			$this->px->site()->set_page_info(
 				$tmp_array['path'],
 				$tmp_array
 			);
 		}
+
+		// キャッシュを保存
+		$this->px->fs()->mkdir($path_blog_page_list_cache_dir);
+		$this->px->fs()->save_file( $path_blog_page_list_cache_dir.'blog_'.$this->options->blog_id.'.array' , self::data2phpsrc($blogmap_array) );
+		set_time_limit(30); // タイマーリセット
+		return true;
+	}
+
+	/**
+	 * 変数をPHPのソースコードに変換する。
+	 *
+	 * `include()` に対してそのままの値を返す形になるよう変換する。
+	 *
+	 * @param mixed $value 値
+	 * @param array $options オプション (`self::data2text()`にバイパスされます。`self::data2text()`の項目を参照してください)
+	 * @return string `include()` に対して値 `$value` を返すPHPコード
+	 */
+	private static function data2phpsrc( $value = null , $options = array() ){
+		$rtn = '';
+		$rtn .= '<'.'?php'."\n";
+		$rtn .= '	/'.'* '.@mb_internal_encoding().' *'.'/'."\n";
+		$rtn .= '	return '.var_export( $value, true ).';'."\n";
+		$rtn .= '?'.'>';
+		return	$rtn;
 	}
 }

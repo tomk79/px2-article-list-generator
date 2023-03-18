@@ -1,0 +1,22 @@
+{
+    "bowl": {
+        "main": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": [
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "サンプル2です。\n",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    }
+                ]
+            }
+        }
+    }
+}

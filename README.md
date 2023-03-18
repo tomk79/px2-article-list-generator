@@ -100,17 +100,18 @@ $ composer require tomk79/px2-page-list-generator
 
 ### 一覧ページのコンテンツを実装
 
-サイトマップの設定ができたら、一覧ページの `content` に設定したコンテンツに次のように実装します。
+`$listMgr->draw()` メソッドを使って簡単に実装できます。
 
 ```php
 <?php
-$listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
+$pageListGenerator = new \tomk79\pickles2\pageListGenerator\main($px);
+$listMgr = $pageListGenerator->create(
 	function($page_info){
-		if ($page_info['article_flg']) {
+		if( $page_info['article_flg'] ){
 			return true;
 		}
 		return false;
-	} ,
+	},
 	array(
 		'scheme'=>'https',
 		'domain'=>'yourdomain.com',
@@ -128,7 +129,29 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 			'atom-1.0'=>$px->get_path_docroot().'rss/atom0100.xml',
 			'rss-1.0'=>$px->get_path_docroot().'rss/rss0100.rdf',
 			'rss-2.0'=>$px->get_path_docroot().'rss/rss0200.xml',
-		)
+		),
+    )
+);
+
+echo $listMgr->draw();
+```
+
+
+#### 一覧テンプレートのカスタマイズ
+
+サイトマップの設定ができたら、一覧ページの `content` に設定したコンテンツに次のように実装します。
+
+```php
+<?php
+$listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
+	function($page_info){
+		if ($page_info['article_flg']) {
+			return true;
+		}
+		return false;
+	} ,
+	array(
+        /* Any Options */
 	)
 );
 
@@ -158,24 +181,23 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 <?php print $pager; ?>
 ```
 
-`$listMgr->draw()` メソッドを使って簡単に実装する方法もあります。
+#### ブログリストから一覧を生成する
+
+`px-files/blogs/(blog_id).csv` にCSVファイルをおいて、サイトマップとは別にブログページの一覧を管理することもできます。
+この一覧は、サイトマップで記事を管理する方法と比べて、ページ同士の階層構造の定義に対応しない代わりに、サイトマップキャッシュ生成の負荷を軽減することができます。
+
+第1引数を、`blog_id` を格納する連想配列に置き換えます。
 
 ```php
 <?php
-$pageListGenerator = new \tomk79\pickles2\pageListGenerator\main($px);
-$listMgr = $pageListGenerator->create(
-	function($page_info){
-		if( $page_info['article_flg'] ){
-			return true;
-		}
-		return false;
-	},
+$listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
+	array(
+        "blog_id" => "xxxxxxxxxxx",
+    ) ,
 	array(
         /* Any Options */
-    )
+	)
 );
-
-echo $listMgr->draw();
 ```
 
 

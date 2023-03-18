@@ -40,7 +40,11 @@ class listMgr{
 	 */
 	public function __construct($px, $cond, $options){
 		$this->px = $px;
-		$this->cond = $cond;
+		$this->cond = (
+			!is_callable($cond)&&(is_array($cond)||is_object($cond))
+				? (object) $cond
+				: $cond
+			);
 		$this->options = (array) $options;
 		$this->current_page_info = $this->px->site()->get_current_page_info();
 		if( isset($this->options['list_page_id']) && is_string($this->options['list_page_id']) && strlen($this->options['list_page_id']) ){
@@ -112,23 +116,30 @@ class listMgr{
 	 */
 	private function load_list(){
 
-		$sitemap = $this->px->site()->get_sitemap();
 		$list = array();
-		foreach( $sitemap as $page_info ){
-			$is_article = false;
-			if( is_callable($this->cond) ){
-				if( call_user_func_array( $this->cond, array($page_info) ) ){
-					$is_article = true;
+		if( !is_callable($this->cond) && is_object($this->cond) ){
+			$blog_id = $this->cond->blog_id ?? null;
+			$path_blog_page_list_cache_dir = $this->px->get_realpath_homedir().'_sys/ram/caches/blogs/';
+			$list = @include($path_blog_page_list_cache_dir.'blog_'.$blog_id.'.array');
+		}else{
+			$sitemap = $this->px->site()->get_sitemap();
+			foreach( $sitemap as $page_info ){
+				$is_article = false;
+				if( is_callable($this->cond) ){
+					if( call_user_func_array( $this->cond, array($page_info) ) ){
+						$is_article = true;
+					}
+				}elseif( is_string($this->cond) ){
+					if( $page_info[$this->cond] ?? null ){
+						$is_article = true;
+					}
 				}
-			}elseif( is_string($this->cond) ){
-				if( $page_info[$this->cond] ?? null ){
-					$is_article = true;
+				if( $is_article ){
+					array_push($list, $page_info);
 				}
-			}
-			if( $is_article ){
-				array_push($list, $page_info);
 			}
 		}
+
 
 		if( $this->options['orderby'] ?? null ){
 			$sort_orderby = $this->options['orderby'];
@@ -244,11 +255,6 @@ class listMgr{
 		$total_count = count($this->list);
 		$current_page_num = $this->current_pager_num;
 
-
-		// 総件数
-		$total_count = intval( $total_count );
-		if( $total_count <= 0 ){ return false; }
-
 		// 現在のページ番号
 		$current_page_num = intval( $current_page_num );
 		if( $current_page_num <= 0 ){ $current_page_num = 1; }
@@ -283,6 +289,13 @@ class listMgr{
 			'index_end'=>0,
 			'errors'=>array(),
 		);
+
+		// 総件数
+		$total_count = intval( $total_count );
+		if( $total_count <= 0 ){
+			$RTN['total_page_count'] = 0;
+			return $RTN;
+		}
 
 		if( $total_count%$display_per_page ){
 			$RTN['total_page_count'] = intval($total_count/$display_per_page) + 1;
