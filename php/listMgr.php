@@ -121,6 +121,7 @@ class listMgr{
 			$blog_id = $this->cond->blog_id ?? null;
 			$path_blog_page_list_cache_dir = $this->px->get_realpath_homedir().'_sys/ram/caches/blogs/';
 			$list = @include($path_blog_page_list_cache_dir.'blog_'.$blog_id.'.array');
+
 		}else{
 			$sitemap = $this->px->site()->get_sitemap();
 			foreach( $sitemap as $page_info ){

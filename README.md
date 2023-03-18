@@ -186,7 +186,26 @@ $pager = $listMgr->mk_pager(); // <- ページャーのHTMLコードを取得し
 `px-files/blogs/(blog_id).csv` にCSVファイルをおいて、サイトマップとは別にブログページの一覧を管理することもできます。
 この一覧は、サイトマップで記事を管理する方法と比べて、ページ同士の階層構造の定義に対応しない代わりに、サイトマップキャッシュ生成の負荷を軽減することができます。
 
-第1引数を、`blog_id` を格納する連想配列に置き換えます。
+`config.php` に、プラグインの設定を追加します。
+
+```php
+// funcs: Before content
+$conf->funcs->before_content = [
+    // ブログを定義する
+    tomk79\pickles2\pageListGenerator\register::define_blog(array(
+        "blogs" => array(
+            "sample_1" => array(
+                "logical_path" => "/define_sample_1/{*}",
+            ),
+            "sample_2" => array(
+                "logical_path" => "/define_sample_2/{*}",
+            ),
+        )
+    )),
+];
+```
+
+一覧画面のHTMLで、第1引数を、`blog_id` を格納する連想配列に置き換えます。
 
 ```php
 <?php
@@ -199,6 +218,7 @@ $listMgr = (new \tomk79\pickles2\pageListGenerator\main($px))->create(
 	)
 );
 ```
+
 
 
 ## 更新履歴 - Change log
